@@ -6,15 +6,16 @@
   padding: 10px 20px;
   justify-content: space-between;
   align-items: center;
+  position: absolute;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+  z-index: 10;
 }
 
 .nav-logo {
-  background-color: white;
   width: 20%;
 }
 
 .nav-logo span {
-  background-color: white;
   color: rgb(76, 0, 255);
 }
 
@@ -31,14 +32,12 @@
   width: 40%;
   display: flex;
   justify-content: space-evenly;
-  background-color: white;
   position: relative;
 }
 
 .nav-center a {
   color: rgb(0, 0, 0);
   width: 60px;
-  background-color: white;
   text-align: center;
   font-size: 14px;
   text-decoration: none;
@@ -68,19 +67,13 @@
   transition: none;
 }
 
-.nav-center .active-link {
-  background-color: white;
-}
-
 .nav-auth {
-  background-color: white;
   width: 20%;
   display: flex;
   justify-content: end;
 }
 
 .nav-auth-links {
-  background-color: white;
   border: 1px solid black;
   padding: 0px 10px;
   display: flex;
@@ -88,12 +81,7 @@
   justify-content: center;
 }
 
-.nav-auth-links span {
-  background-color: white;
-}
-
 .nav-auth a {
-  background-color: white;
   color: black;
   font-size: 12px;
   transition: color 0.3s ease;
