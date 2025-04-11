@@ -1,7 +1,12 @@
+import LandingPage from "./components/LandingPage";
 import "./home.style.css";
 
 const Home = () => {
-  return;
+  return (
+    <>
+      <LandingPage />
+    </>
+  );
 };
 
 export default Home;
