@@ -11,7 +11,7 @@ const LandingPage = () => {
           writer.
         </p>
         <Link to="/home" className="hero-button">
-          <button>Start Writing</button>
+          <button>Join Now</button>
         </Link>
         <div className="scroll-down">&#8595;</div>
       </div>
