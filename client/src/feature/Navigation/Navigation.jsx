@@ -1,3 +1,4 @@
+import HamburgerMenu from "./components/HamburgerMenu";
 import "./navigation.style.css";
 import { NavLink, Link } from "react-router-dom";
 
@@ -53,6 +54,7 @@ const Navigation = () => {
             Log in
           </Link>
         </div>
+        <HamburgerMenu />
       </div>
     </nav>
   );

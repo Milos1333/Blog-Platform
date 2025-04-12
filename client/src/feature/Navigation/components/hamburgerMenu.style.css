@@ -1,0 +1,86 @@
+.hamburger-wrapper {
+  display: none;
+}
+
+.hamburger-icon {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 11;
+}
+
+.hamburger-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 50%;
+  height: 60vh;
+  background-color: white;
+  padding: 70px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 10;
+  text-align: right;
+  font-size: 20px;
+  transition: right 0.3s ease-in-out;
+  width: 220px;
+}
+
+.hamburger-menu a {
+  font-size: 13px !important;
+}
+
+.hamburger-menu a:hover {
+  color: rgb(76, 0, 255);
+}
+
+.nav-item {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.link {
+  display: flex;
+  gap: 15px;
+}
+
+.nav-menu-links {
+  display: flex;
+  justify-content: space-between;
+  border-top: 0.2px solid rgb(0, 0, 0);
+  padding-top: 30px;
+}
+
+.nav-menu-links img {
+  transition: transform 0.5s ease;
+  cursor: pointer;
+}
+
+.nav-menu-links img:hover {
+  transform: scale(1.05);
+}
+
+.nav-menu-link {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  justify-content: space-around;
+}
+
+.nav-menu-link a {
+  font-size: 11px !important;
+}
+
+@media screen and (max-width: 600px) {
+  .hamburger-wrapper {
+    display: block;
+  }
+
+  .hamburger-wrapper.active .hamburger-menu {
+    right: 0;
+  }
+}
