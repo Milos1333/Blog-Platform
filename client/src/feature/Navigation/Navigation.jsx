@@ -6,7 +6,12 @@ const Navigation = () => {
   return (
     <nav className="navigation-container">
       <div className="nav-logo">
-        <Link to="/">
+        <Link
+          to="/"
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+        >
           <h3>
             My<span>Blog</span>
           </h3>

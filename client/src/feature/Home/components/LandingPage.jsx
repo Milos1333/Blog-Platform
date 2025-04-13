@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./landingPage.style.css";
+import "../styles/landingPage.style.css";
 
 const LandingPage = () => {
   return (
