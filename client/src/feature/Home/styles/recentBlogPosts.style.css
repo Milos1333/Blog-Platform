@@ -30,6 +30,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 20px;
+  justify-items: center;
 }
 
 .blog-card {
@@ -39,6 +40,7 @@
   transition: box-shadow 0.3s;
   background-color: white;
   position: relative;
+  max-width: 250px;
 }
 
 .blog-card:hover {
@@ -79,6 +81,7 @@
   transform: translate(-50%, -50%);
   display: none;
   font-size: 13px;
+  background-color: white;
 }
 
 .blog-card:hover > .button-view-more {
