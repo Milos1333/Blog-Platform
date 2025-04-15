@@ -18,9 +18,9 @@
 
 .platform-stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  grid-template-columns: repeat(3, 1fr); /* 3 kolone na većim ekranima */
   gap: 60px;
-  max-width: 700px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 0 19px;
 }
@@ -31,10 +31,8 @@
   border-radius: 16px;
   box-shadow: -4px 4px 8px rgba(0, 8, 168, 0.154);
   transition: transform 0.2s ease-in;
-  border: 1px solid rgba(0, 0, 0, 0.103);
   height: 110px;
-  max-width: 200px;
-  width: 100%;
+  width: 200px !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -57,24 +55,34 @@
   margin-top: 8px;
 }
 
-@media screen and (max-width: 700px) {
+/* TABLET: 2 kolone, 3. stat ide ispod */
+@media screen and (max-width: 900px) {
   .platform-stats-grid {
-    justify-items: center;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stat-box {
+    width: 200px !important;
   }
 
   .stat-box:nth-child(3) {
     grid-column: 1 / -1;
     justify-self: center;
-    width: 100%;
-    max-width: 200px;
-  }
-
-  .platform-stats-grid {
-    margin-top: 50px;
   }
 }
 
+/* MOBILNI: 1 kolona */
 @media screen and (max-width: 600px) {
+  .platform-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin-top: 50px;
+  }
+
+  .platform-stats-grid {
+    justify-items: center;
+  }
+
   .platform-stats-heading {
     font-size: 30px;
   }
@@ -86,8 +94,13 @@
   .stat-number {
     font-size: 25px;
   }
+
+  .stat-box:nth-child(3) {
+    grid-column: auto;
+  }
 }
 
+/* JOŠ MANJI MOBILNI */
 @media screen and (max-width: 450px) {
   .platform-stats-heading {
     font-size: 25px;
