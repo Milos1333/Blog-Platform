@@ -1,6 +1,11 @@
 .recent-blog-posts {
   padding: 70px 16px;
   width: 80%;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .header-recent-posts {
@@ -8,6 +13,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
+  width: 100%;
 }
 
 .header h2 {
@@ -28,9 +34,10 @@
 
 .blog-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   justify-items: center;
+  width: 100%;
 }
 
 .blog-card {
@@ -40,7 +47,7 @@
   transition: box-shadow 0.3s;
   background-color: white;
   position: relative;
-  max-width: 250px;
+  width: 210px;
 }
 
 .blog-card:hover {
@@ -82,6 +89,9 @@
   display: none;
   font-size: 13px;
   background-color: white;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 .blog-card:hover > .button-view-more {
@@ -117,4 +127,44 @@
   color: white;
   font-size: 12px;
   margin-top: 10px;
+}
+
+@media screen and (max-width: 1100px) {
+  .blog-grid {
+    grid-template-columns: repeat(2, 1fr);
+    width: 500px;
+  }
+
+  .header-recent-posts {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .recent-blog-posts {
+    padding-bottom: 50px;
+  }
+
+  .recent-blog-posts h2 {
+    padding-bottom: 20px;
+  }
+
+  .blog-grid {
+    grid-template-columns: repeat(1, 1fr);
+    margin-bottom: 200px;
+    gap: 40px;
+  }
+  .header-recent-posts {
+    flex-direction: column;
+  }
+
+  .header-recent-posts button {
+    position: absolute;
+    bottom: 160px;
+    font-size: 13px;
+  }
+
+  .blog-card {
+    width: 200px !important;
+  }
 }
