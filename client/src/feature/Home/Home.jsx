@@ -1,3 +1,4 @@
+import BlogCategories from "./components/BlogCategories";
 import LandingPage from "./components/LandingPage";
 import PlatformStats from "./components/PlatformStats";
 import RecentBlogPosts from "./components/RecentBlogPosts";
@@ -9,6 +10,7 @@ const Home = () => {
       <LandingPage />
       <PlatformStats />
       <RecentBlogPosts />
+      <BlogCategories />
     </div>
   );
 };
