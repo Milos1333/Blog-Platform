@@ -14,7 +14,7 @@
 .header-blog-categories h2 {
   font-size: 32px;
   font-weight: 700;
-  color: #111827;
+  color: #ffffff;
   position: relative;
   display: inline-block;
 }
@@ -31,7 +31,7 @@
 
 .categories-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 25px;
   max-width: 1100px;
   margin: 0 auto;
@@ -55,7 +55,7 @@
 }
 
 .category-emoji {
-  font-size: 36px;
+  font-size: 30px;
   margin-bottom: 12px;
   transition: transform 0.3s ease;
 }
@@ -65,7 +65,7 @@
 }
 
 .category-card h3 {
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 600;
   color: #111827;
   margin: 0;
