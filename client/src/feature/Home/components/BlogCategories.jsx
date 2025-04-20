@@ -9,7 +9,6 @@ const categories = [
   { id: 4, name: "Personal Growth", emoji: "🌱" },
   { id: 5, name: "Career & Work", emoji: "📈" },
   { id: 6, name: "Reviews", emoji: "📝" },
-  { id: 7, name: "Travel", emoji: "🌍" },
 ];
 
 const BlogCategories = () => {
