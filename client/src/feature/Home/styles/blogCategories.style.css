@@ -81,7 +81,7 @@
   }
 
   .category-card h3 {
-    font-size: 8px;
+    font-size: 10px;
   }
 
   .category-emoji {
@@ -102,5 +102,16 @@
 
   .category-card {
     width: 200px;
+    box-shadow: 0 4px 14px rgba(13, 0, 84, 0.455) !important;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .category-card {
+    width: 140px;
+  }
+
+  .header-blog-categories h2 {
+    font-size: 25px;
   }
 }
