@@ -1,3 +1,129 @@
-.about {
-  height: 60vh;
+.home-about {
+  padding: 200px 0 50px 0;
+  width: 80%;
+  text-align: center;
+}
+
+.home-about-heading {
+  font-size: 35px;
+  padding-bottom: 20px;
+}
+
+.home-about-content {
+  background-image: url(../../../assets/aboutUs-homepage.jpeg);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  height: 70vh;
+  color: white;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 20px;
+}
+
+.home-about-content::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 12, 142, 0.483);
+  z-index: 1;
+}
+
+.home-about-text-block {
+  z-index: 10;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.455);
+  width: 60%;
+  text-align: left;
+  padding: 20px;
+}
+
+.home-about-paragraph {
+  font-size: 14px;
+  font-style: italic;
+  padding: 10px 0;
+}
+
+.home-about-title {
+  padding: 5px 0 !important;
+  font-size: 30px !important;
+}
+
+.home-about-button {
+  margin-top: 20px;
+  font-size: 11px;
+  background-color: rgb(76, 0, 255);
+  color: white;
+}
+
+@media screen and (max-width: 1000px) {
+  .home-about-paragraph {
+    font-size: 12px;
+  }
+
+  .home-about-title {
+    font-size: 25px;
+    line-height: 1.1;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .home-about {
+    padding-top: 400px;
+  }
+
+  .home-about-heading {
+    font-size: 30px;
+  }
+
+  .home-about-content {
+    justify-content: center;
+  }
+
+  .home-about-text-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 70%;
+  }
+
+  .home-about-title {
+    font-size: 22px !important;
+    padding: 10px 0 !important;
+  }
+
+  .home-about-question {
+    font-size: 14px;
+  }
+
+  .home-about-paragraph {
+    font-size: 11px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .home-about-heading {
+    font-size: 25px;
+  }
+
+  .home-about-question {
+    font-size: 13px;
+  }
+
+  .home-about-text-block {
+    width: 90%;
+  }
+
+  .home-about-paragraph {
+    font-size: 10px;
+  }
+
+  .home-about-title {
+    font-size: 20px !important;
+  }
 }
