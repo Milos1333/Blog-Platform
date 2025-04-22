@@ -1,6 +1,6 @@
 .blog-categories {
   padding: 60px 20px;
-  background-color: #111827;
+  background-color: #0a0042;
   font-family: "Segoe UI", sans-serif;
   width: 100%;
   height: 200px;
@@ -108,7 +108,7 @@
 
 @media screen and (max-width: 500px) {
   .category-card {
-    width: 140px;
+    width: 120px;
   }
 
   .header-blog-categories h2 {
