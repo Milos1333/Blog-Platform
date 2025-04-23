@@ -5,6 +5,7 @@ import recentImagePost1 from "../../../assets/recentBlog1.jpeg";
 import recentImagePost2 from "../../../assets/recentBlog2.jpeg";
 import recentImagePost3 from "../../../assets/recentBlog3.jpeg";
 import recentImagePost4 from "../../../assets/recentBlog4.jpg";
+import { Link } from "react-router-dom";
 
 const blogPosts = [
   {
@@ -43,7 +44,9 @@ const RecentBlogPosts = () => {
       <div className="header-recent-posts">
         <h2>Latest Blogs</h2>
         <button className="see-all-recent-blog">
-          Explore all posts <ArrowRight size={18} />
+          <Link to="/blogs" className="see-all-recent-blog">
+            Explore all posts <ArrowRight size={18} />
+          </Link>
         </button>
       </div>
 
