@@ -1,4 +1,4 @@
-import AboutUs from "./components/AboutUs";
+import AboutHome from "./components/AboutHome";
 import BlogCategories from "./components/BlogCategories";
 import LandingPage from "./components/LandingPage";
 import PlatformStats from "./components/PlatformStats";
@@ -12,7 +12,7 @@ const Home = () => {
       <PlatformStats />
       <RecentBlogPosts />
       <BlogCategories />
-      <AboutUs />
+      <AboutHome />
     </div>
   );
 };
