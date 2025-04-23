@@ -1,4 +1,3 @@
-import Footer from "../Footer/Footer";
 import AboutUs from "./components/AboutUs";
 import BlogCategories from "./components/BlogCategories";
 import LandingPage from "./components/LandingPage";
@@ -14,7 +13,6 @@ const Home = () => {
       <RecentBlogPosts />
       <BlogCategories />
       <AboutUs />
-      <Footer />
     </div>
   );
 };
