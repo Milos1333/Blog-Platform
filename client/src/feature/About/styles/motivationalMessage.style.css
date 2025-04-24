@@ -1,0 +1,46 @@
+.motivation-container {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20vh;
+  text-transform: uppercase;
+  background-image: url("../../../assets//AboutPageImages/motivationalBackground.jpg");
+  background-position: top;
+  background-size: cover;
+  position: relative;
+  text-align: center;
+  padding: 0 40px;
+}
+
+.motivation-container::after {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  content: "";
+  background-color: rgba(11, 0, 60, 0.76);
+  z-index: 2;
+}
+
+.motivation-container h3 {
+  position: relative;
+  z-index: 3;
+}
+
+@media screen and (max-width: 700px) {
+  .motivation-container h3 {
+    font-size: 16px;
+  }
+
+  .motivation-container {
+    height: 15vh;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .motivation-container h3 {
+    font-size: 12px;
+  }
+}

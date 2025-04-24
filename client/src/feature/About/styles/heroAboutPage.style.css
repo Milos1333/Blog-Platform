@@ -78,3 +78,45 @@
 .about-hero-container:hover {
   color: white;
 }
+
+@media screen and (max-width: 600px) {
+  .main-headline {
+    font-size: 40px;
+  }
+
+  .description-about {
+    font-size: 12px;
+  }
+
+  .about-hero-container > button {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .main-headline {
+    font-size: 32px;
+  }
+
+  .description-about {
+    font-size: 10px;
+  }
+
+  .subheadline {
+    font-size: 12px;
+  }
+
+  .about-hero-container {
+    padding: 0 15px;
+  }
+
+  .about-hero-container > button {
+    padding: 4px 13px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .main-headline {
+    font-size: 28px;
+  }
+}
