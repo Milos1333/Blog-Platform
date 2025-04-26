@@ -18,7 +18,15 @@ const HeroAboutPage = () => {
             this blog brings together design, development, and storytelling into
             one unique journey. Everyone’s welcome to discover, share, and grow.
           </p>
-          <button>View more</button>
+          <button
+            onClick={() => {
+              document
+                .querySelector(".creator-container")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            View more
+          </button>
         </div>
       </div>
     </div>
