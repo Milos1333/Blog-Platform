@@ -4,56 +4,90 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../styles/blogReview.style.css";
+import ImageCreator from "../../../assets/AboutPageImages/creatorOfBlog.jpg";
 
-// Recenzije za prikazivanje u Carousel-u
 const reviews = [
   {
-    name: "John Doe",
-    review: "This is an amazing product! I highly recommend it.",
+    name: "Amanda Blake",
+    review: `"I stumbled upon this blog while looking for design inspiration—and I’m so glad I did. Every post feels like a creative spark. Keep it up!"`,
+    image: ImageCreator,
   },
   {
-    name: "Jane Smith",
-    review: "Great quality, really loved it!",
+    name: "Thomas Reed",
+    review: `"Clean layout, engaging topics, and genuinely useful content. I’ve bookmarked the site and visit it regularly for new updates."`,
+    image: ImageCreator,
   },
   {
-    name: "Emily Johnson",
-    review: "It didn't work as expected. Quite disappointed.",
+    name: "Sophia Bennett",
+    review: `"What I love about this blog is the personality behind it. It feels authentic, not like mass-produced content. The visual design is stunning too!"`,
+    image: ImageCreator,
   },
   {
-    name: "Sarah Lee",
-    review: "Superb! A game-changer for me.",
+    name: "Liam Carter",
+    review: `"As someone who works in digital marketing, this blog is a hidden gem. It offers fresh perspectives with just the right tone and visuals."`,
+    image: ImageCreator,
+  },
+  {
+    name: "Chloe Patterson",
+    review: `"Every time I read a new article, I end up learning something useful. The writing is clear and concise, and the design tips are spot-on."`,
+    image: ImageCreator,
+  },
+  {
+    name: "Ethan Mitchell",
+    review: `"Great balance of aesthetics and substance. I especially enjoy the posts where the author shares his personal journey and creative process."`,
+    image: ImageCreator,
+  },
+  {
+    name: "Isabella Hayes",
+    review: `"This blog has become part of my morning routine. The content is refreshing, motivational, and beautifully presented. Highly recommended."`,
+    image: ImageCreator,
+  },
+  {
+    name: "James Parker",
+    review: `"I appreciate the mix of tutorials, personal stories, and project showcases. It’s clear the author is passionate about what he does."`,
+    image: ImageCreator,
   },
 ];
 
 const BlogReview = () => {
-  // Slick Carousel opcije
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
-    slidesToShow: 1,
+    speed: 300,
+    slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
+    centerMode: true,
+    centerPadding: "0px", // <<< ovo je ključno
+    focusOnSelect: true,
   };
 
   return (
-    <Box sx={{ maxWidth: 600, margin: "auto", padding: 2 }}>
-      <Typography variant="h4" align="center" gutterBottom>
-        Blog Reviews
-      </Typography>
+    <Box className="blog-review-container">
+      <div className="review-title">
+        <hr />
+        <h2>Blog Reviews</h2>
+        <hr />
+      </div>
 
-      {/* Carousel sa recenzijama */}
-      <Slider {...settings}>
-        {reviews.map((review, index) => (
-          <Card key={index} sx={{ margin: 2 }}>
-            <CardContent>
-              <Typography variant="h6" align="center" gutterBottom>
+      <Slider {...settings} className="blog-review-slider">
+        {reviews.slice(-6).map((review, index) => (
+          <Card key={index} className="blog-review-card">
+            <CardContent className="blog-review-card-content">
+              <img
+                src={review.image}
+                alt={review.name}
+                style={{
+                  width: "60px",
+                  height: "60px",
+                  borderRadius: "50%",
+                }}
+              />
+              <Typography className="blog-review-name">
                 {review.name}
               </Typography>
-              <Typography variant="body1" align="center">
-                {review.review}
-              </Typography>
+              <p className="blog-review-text">{review.review}</p>
             </CardContent>
           </Card>
         ))}
