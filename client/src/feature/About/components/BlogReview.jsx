@@ -1,11 +1,13 @@
 import React from "react";
-import { Box, Typography, Card, CardContent } from "@mui/material";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import "../styles/blogReview.style.css";
+import { Carousel } from "primereact/carousel";
+import { Card } from "primereact/card";
 import ImageCreator from "../../../assets/AboutPageImages/creatorOfBlog.jpg";
+import "../styles/blogReview.style.css";
+import "primereact/resources/themes/lara-light-indigo/theme.css";
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
 
+// Recenzije
 const reviews = [
   {
     name: "Amanda Blake",
@@ -37,78 +39,69 @@ const reviews = [
     review: `"Great balance of aesthetics and substance. I especially enjoy the posts where the author shares his personal journey and creative process."`,
     image: ImageCreator,
   },
-  {
-    name: "Isabella Hayes",
-    review: `"This blog has become part of my morning routine. The content is refreshing, motivational, and beautifully presented. Highly recommended."`,
-    image: ImageCreator,
-  },
-  {
-    name: "James Parker",
-    review: `"I appreciate the mix of tutorials, personal stories, and project showcases. It’s clear the author is passionate about what he does."`,
-    image: ImageCreator,
-  },
 ];
 
 const BlogReview = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 300,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    centerMode: true,
-    centerPadding: "0px", // <<< ovo je ključno
-    focusOnSelect: true,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          centerMode: false,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          centerMode: false,
-        },
-      },
-    ],
+  const responsiveOptions = [
+    {
+      breakpoint: "1024px",
+      numVisible: 2,
+      numScroll: 1,
+    },
+    {
+      breakpoint: "768px",
+      numVisible: 1,
+      numScroll: 1,
+    },
+  ];
+
+  const reviewTemplate = (review) => {
+    return (
+      <div className="p-2">
+        <Card
+          className="text-center blog-review-card"
+          style={{ padding: "24px" }}
+        >
+          <img
+            src={review.image}
+            alt={review.name}
+            style={{
+              width: "60px",
+              height: "60px",
+              borderRadius: "50%",
+              marginBottom: "1rem",
+            }}
+          />
+          <h3 className="blog-review-name" style={{ marginBottom: "0.5rem" }}>
+            {review.name}
+          </h3>
+          <p className="blog-review-text" style={{ fontStyle: "italic" }}>
+            {review.review}
+          </p>
+        </Card>
+      </div>
+    );
   };
 
   return (
-    <Box className="blog-review-container">
+    <div className="blog-review-container">
       <div className="review-title">
         <hr />
         <h2>Blog Reviews</h2>
         <hr />
       </div>
 
-      <Slider {...settings} className="blog-review-slider">
-        {reviews.slice(-6).map((review, index) => (
-          <Card key={index} className="blog-review-card">
-            <CardContent className="blog-review-card-content">
-              <img
-                src={review.image}
-                alt={review.name}
-                style={{
-                  width: "60px",
-                  height: "60px",
-                  borderRadius: "50%",
-                }}
-              />
-              <Typography className="blog-review-name">
-                {review.name}
-              </Typography>
-              <p className="blog-review-text">{review.review}</p>
-            </CardContent>
-          </Card>
-        ))}
-      </Slider>
-    </Box>
+      <Carousel
+        value={reviews}
+        itemTemplate={reviewTemplate}
+        numVisible={3}
+        numScroll={1}
+        autoplayInterval={3000}
+        circular
+        responsiveOptions={responsiveOptions}
+        showIndicators
+      />
+    </div>
   );
 };
 
