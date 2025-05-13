@@ -7,7 +7,6 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 
-// Recenzije
 const reviews = [
   {
     name: "Amanda Blake",
@@ -48,8 +47,9 @@ const BlogReview = () => {
       numVisible: 2,
       numScroll: 1,
     },
+
     {
-      breakpoint: "768px",
+      breakpoint: "650px",
       numVisible: 1,
       numScroll: 1,
     },
@@ -69,13 +69,25 @@ const BlogReview = () => {
               width: "60px",
               height: "60px",
               borderRadius: "50%",
-              marginBottom: "1rem",
+              marginBottom: "16px",
             }}
           />
-          <h3 className="blog-review-name" style={{ marginBottom: "0.5rem" }}>
+          <h3
+            className="blog-review-name"
+            style={{ marginBottom: "8px", fontSize: "18px" }}
+          >
             {review.name}
           </h3>
-          <p className="blog-review-text" style={{ fontStyle: "italic" }}>
+          <p
+            className="blog-review-text"
+            style={{
+              fontStyle: "italic",
+              fontSize: "14px",
+              lineHeight: "22px",
+              color: "#555555",
+              textAlign: "center",
+            }}
+          >
             {review.review}
           </p>
         </Card>
@@ -87,7 +99,7 @@ const BlogReview = () => {
     <div className="blog-review-container">
       <div className="review-title">
         <hr />
-        <h2>Blog Reviews</h2>
+        <h2 style={{ fontSize: "32px", marginTop: "0px" }}>Blog Reviews</h2>
         <hr />
       </div>
 
