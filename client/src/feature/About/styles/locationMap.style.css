@@ -1,0 +1,27 @@
+.location-wrapper {
+  padding: 0 50px;
+  margin: 130px 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 13px;
+  position: relative;
+  z-index: 10;
+}
+
+.leaflet-control-attribution {
+  opacity: 0;
+}
+
+@media screen and (max-width: 500px) {
+  .location-wrapper {
+    font-size: 10px;
+    margin-bottom: 100px;
+  }
+
+  .leaflet-popup-content {
+    font-size: 10px;
+    width: 150px !important;
+  }
+}
