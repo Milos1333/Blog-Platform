@@ -31,7 +31,7 @@ const Navigation = () => {
           About
         </NavLink>
         <NavLink
-          to="/create"
+          to="/createBlog"
           className={({ isActive }) => (isActive ? "active-link" : "")}
         >
           Create

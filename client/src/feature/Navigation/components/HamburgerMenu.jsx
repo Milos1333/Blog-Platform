@@ -39,11 +39,11 @@ const HamburgerMenu = () => {
 
         <div className="nav-item">
           <NavLink
-            to="/blog"
+            to="/createBlog"
             onClick={() => setMenuOpen(false)}
             className="link"
           >
-            Blog <img src={BlogImg} width="20px" />
+            Create Blog <img src={BlogImg} width="20px" />
           </NavLink>
         </div>
 
