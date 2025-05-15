@@ -26,52 +26,52 @@ const CreateBlogPost = () => {
 
         <form onSubmit={handleSubmit} className="create-post-form">
           <div className="form-group">
-            <label htmlFor="author">Author (Ime i Prezime)</label>
+            <label htmlFor="author">Author (Full Name)</label>
             <InputText
               id="author"
               value={author}
               onChange={(e) => setAuthor(e.target.value)}
-              placeholder="Unesi svoje ime i prezime"
+              placeholder="Enter your full name"
               required
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="title">Naslov Bloga</label>
+            <label htmlFor="title">Blog Title</label>
             <InputText
               id="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              placeholder="Unesi naslov blog posta"
+              placeholder="Enter the blog post title"
               required
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="content">Sadržaj</label>
+            <label htmlFor="content">Content</label>
             <InputTextarea
               id="content"
               value={content}
               onChange={(e) => setContent(e.target.value)}
               rows={5}
-              placeholder="Ovdje napiši tekst svog posta..."
+              placeholder="Write your post content here..."
               required
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="date">Datum Kreiranja</label>
+            <label htmlFor="date">Creation Date</label>
             <Calendar
               id="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
-              showIcon
+              placeholder="Press to select a date"
             />
           </div>
 
           <Button
             type="submit"
-            label="✅ Kreiraj Post"
+            label="Create Post"
             className="submit-post-button"
           />
         </form>
