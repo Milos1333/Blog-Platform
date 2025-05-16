@@ -10,10 +10,29 @@ const CreateBlogPost = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [date, setDate] = useState(null);
+  const [image, setImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
+  const [imageError, setImageError] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ author, title, content, date });
+
+    if (!image) {
+      setImageError(true);
+      return;
+    }
+
+    setImageError(false);
+    console.log({ author, title, content, date, image });
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImage(file);
+      setImagePreview(URL.createObjectURL(file));
+      setImageError(false);
+    }
   };
 
   return (
@@ -59,7 +78,7 @@ const CreateBlogPost = () => {
               id="content"
               value={content}
               onChange={(e) => setContent(e.target.value)}
-              rows={5}
+              rows={3}
               placeholder="Write your post content here..."
               required
               maxLength={1000}
@@ -73,7 +92,34 @@ const CreateBlogPost = () => {
               value={date}
               onChange={(e) => setDate(e.target.value)}
               placeholder="Press to select a date"
+              required
             />
+          </div>
+
+          <div className="form-group form-group-image">
+            <label htmlFor="image">Cover Image</label>
+            <input
+              type="file"
+              id="image"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="input-image"
+            />
+            {imageError && (
+              <small className="error-message">Cover image is required.</small>
+            )}
+            {imagePreview && (
+              <img
+                src={imagePreview}
+                alt="Preview"
+                className="image-preview"
+                style={{
+                  marginTop: "10px",
+                  maxWidth: "100%",
+                  borderRadius: "8px",
+                }}
+              />
+            )}
           </div>
 
           <Button
