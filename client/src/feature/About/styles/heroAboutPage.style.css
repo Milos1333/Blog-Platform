@@ -40,6 +40,7 @@
   min-width: 300px;
   padding: 0 50px;
   margin-top: 20px;
+  animation: fadeInUp 0.6s ease;
 }
 
 .main-headline {
@@ -77,6 +78,17 @@
 
 .about-hero-container:hover {
   color: white;
+}
+
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
 }
 
 @media screen and (max-width: 600px) {

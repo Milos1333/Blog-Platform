@@ -21,7 +21,7 @@ const CreateBlogPost = () => {
       <div className="create-post-content">
         <h2>Create a New Blog Post</h2>
         <p className="create-post-subtitle">
-          Share your thoughts with the world ✍️
+          Share your thoughts with the world! ✍️
         </p>
 
         <form onSubmit={handleSubmit} className="create-post-form">
@@ -30,9 +30,14 @@ const CreateBlogPost = () => {
             <InputText
               id="author"
               value={author}
-              onChange={(e) => setAuthor(e.target.value)}
+              onChange={(e) => {
+                const input = e.target.value;
+                const onlyLetters = input.replace(/[0-9]/g, "");
+                setAuthor(onlyLetters);
+              }}
               placeholder="Enter your full name"
               required
+              maxLength={50}
             />
           </div>
 
@@ -44,6 +49,7 @@ const CreateBlogPost = () => {
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Enter the blog post title"
               required
+              maxLength={50}
             />
           </div>
 
@@ -56,6 +62,7 @@ const CreateBlogPost = () => {
               rows={5}
               placeholder="Write your post content here..."
               required
+              maxLength={1000}
             />
           </div>
 
