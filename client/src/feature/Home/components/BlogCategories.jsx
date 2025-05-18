@@ -1,15 +1,6 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/blogCategories.style.css";
-
-const categories = [
-  { id: 1, name: "Programming", emoji: "💻" },
-  { id: 2, name: "Design", emoji: "🎨" },
-  { id: 3, name: "Technology", emoji: "🧠" },
-  { id: 4, name: "Personal Growth", emoji: "🌱" },
-  { id: 5, name: "Career & Work", emoji: "📈" },
-  { id: 6, name: "Reviews", emoji: "📝" },
-];
+import { categories } from "../../../data/categoriesData";
 
 const BlogCategories = () => {
   return (
@@ -19,7 +10,7 @@ const BlogCategories = () => {
       </div>
 
       <div className="categories-grid">
-        {categories.map((category) => (
+        {categories.slice(1).map((category) => (
           <Link
             to={`/category/${category.name
               .toLowerCase()

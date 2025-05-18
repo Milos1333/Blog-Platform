@@ -27,7 +27,7 @@
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   width: 90%;
-  margin-top: 30px;
+  margin-top: 40px;
   max-width: 500px;
   z-index: 2;
   animation: fadeInUp 0.6s ease;
@@ -147,7 +147,6 @@
 
 .p-datepicker td {
   text-align: center;
-  vertical-align: middle;
   padding: 0 !important;
 }
 
@@ -177,6 +176,30 @@
 
 .form-group-image {
   height: 100px;
+}
+
+.p-datepicker-next,
+.p-datepicker-prev {
+  background-color: transparent !important;
+}
+
+.p-icon.p-datepicker-next-icon,
+.p-icon.p-datepicker-prev-icon {
+  color: blue !important;
+  position: absolute;
+  width: 10px !important;
+  height: 10px !important;
+}
+
+.p-datepicker-title {
+  display: flex;
+  gap: 3px;
+}
+
+.p-datepicker-month,
+.p-datepicker-year {
+  background-color: transparent !important;
+  pointer-events: none;
 }
 
 @keyframes fadeInUp {
@@ -239,11 +262,20 @@
     font-size: 9px;
   }
 
+  .p-datepicker td > span {
+    font-size: 10px;
+  }
+
   .p-datepicker {
     font-size: 14px;
   }
 
   .p-datepicker-calendar {
     font-size: 12px !important;
+  }
+
+  .p-datepicker-month,
+  .p-datepicker-year {
+    font-size: 12px;
   }
 }

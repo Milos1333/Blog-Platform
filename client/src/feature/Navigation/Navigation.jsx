@@ -37,16 +37,16 @@ const Navigation = () => {
           Create
         </NavLink>
         <NavLink
-          to="/my-blogs"
-          className={({ isActive }) => (isActive ? "active-link" : "")}
-        >
-          My Blogs
-        </NavLink>
-        <NavLink
           to="/blogs"
           className={({ isActive }) => (isActive ? "active-link" : "")}
         >
           Blogs
+        </NavLink>
+        <NavLink
+          to="/contact"
+          className={({ isActive }) => (isActive ? "active-link" : "")}
+        >
+          Contact
         </NavLink>
       </div>
       <div className="nav-auth">
