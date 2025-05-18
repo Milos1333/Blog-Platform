@@ -1,10 +1,9 @@
-import React from "react";
 import "../styles/recentBlogPosts.style.css";
 import { ArrowRight } from "lucide-react";
-import recentImagePost1 from "../../../assets/recentBlog1.jpeg";
-import recentImagePost2 from "../../../assets/recentBlog2.jpeg";
-import recentImagePost3 from "../../../assets/recentBlog3.jpeg";
-import recentImagePost4 from "../../../assets/recentBlog4.jpg";
+import recentImagePost1 from "../../../assets/HomePageImages/recentBlog1.jpeg";
+import recentImagePost2 from "../../../assets/HomePageImages/recentBlog2.jpeg";
+import recentImagePost3 from "../../../assets/HomePageImages/recentBlog3.jpeg";
+import recentImagePost4 from "../../../assets/HomePageImages/recentBlog4.jpg";
 import { Link } from "react-router-dom";
 
 const blogPosts = [

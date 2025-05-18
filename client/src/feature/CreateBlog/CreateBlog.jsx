@@ -81,7 +81,6 @@ const CreateBlogPost = () => {
               rows={3}
               placeholder="Write your post content here..."
               required
-              maxLength={1000}
             />
           </div>
 
