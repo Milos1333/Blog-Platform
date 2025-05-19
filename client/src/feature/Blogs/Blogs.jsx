@@ -26,13 +26,14 @@ const Blogs = () => {
           ))}
         </ul>
       </div>
-
       <div className="blogs-list-wrapper">
-        {/* Ovde ćeš prikazivati blog postove u budućnosti */}
-        <p className="blogs-placeholder-text">
-          Selected category:{" "}
-          {categories.find((cat) => cat.id === activeCategoryId)?.name || ""}
-        </p>
+        <div className="blogs-grid">
+          {blogs.map((blog) => (
+            <div key={blog.id} className="blog-card">
+              {blog.title}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
