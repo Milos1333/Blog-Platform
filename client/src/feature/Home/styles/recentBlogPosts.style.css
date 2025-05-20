@@ -114,7 +114,7 @@
 }
 
 .blog-card:hover::before {
-  background-color: rgba(3, 0, 31, 0.719);
+  background-color: rgba(3, 0, 31, 0.381);
 }
 
 .recent-blog-user {
