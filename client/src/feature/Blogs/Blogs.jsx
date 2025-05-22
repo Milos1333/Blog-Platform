@@ -8,13 +8,13 @@ import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 
 const Blogs = () => {
-  const [activeCategoryId, setActiveCategoryId] = useState(1); // 0 = All
+  const [activeCategoryId, setActiveCategoryId] = useState(1);
   const [first, setFirst] = useState(0);
   const rows = 8;
 
   const handleCategoryClick = (id) => {
     setActiveCategoryId(id);
-    setFirst(0); // reset paginaciju kad se promeni kategorija
+    setFirst(0);
   };
 
   const filteredBlogs =
@@ -43,9 +43,9 @@ const Blogs = () => {
       </div>
 
       <div className="blogs-list-wrapper">
-        <div className="blogs-grid">
+        <div className="blogs-list-grid">
           {currentBlogs.map((blog) => (
-            <div key={blog.id} className="blog-card">
+            <div key={blog.id} className="blogs-list-card">
               <img src={blog.image} alt={blog.title} className="blog-image" />
               <h3 className="blog-title">{blog.title}</h3>
               <p className="blog-description">{blog.description}</p>
