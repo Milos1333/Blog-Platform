@@ -16,9 +16,9 @@ const CreateBlogPost = () => {
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [imageError, setImageError] = useState(false);
-  const [category, setCategory] = useState(null); // NOVO
+  const [category, setCategory] = useState(null);
 
-  const filteredCategories = categories.filter((cat) => cat.name !== "All"); // NOVO
+  const filteredCategories = categories.filter((cat) => cat.name !== "All");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -85,7 +85,6 @@ const CreateBlogPost = () => {
             />
           </div>
 
-          {/* DODAT Dropdown za kategorije */}
           <div className="form-group">
             <label htmlFor="category">Category</label>
             <Dropdown

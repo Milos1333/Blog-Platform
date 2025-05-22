@@ -8,16 +8,21 @@ import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 
 const Blogs = () => {
-  const [activeCategoryId, setActiveCategoryId] = useState(1);
+  const [activeCategoryId, setActiveCategoryId] = useState(1); // 0 = All
   const [first, setFirst] = useState(0);
-  const rows = 6;
+  const rows = 8;
 
   const handleCategoryClick = (id) => {
     setActiveCategoryId(id);
-    setFirst(0);
+    setFirst(0); // reset paginaciju kad se promeni kategorija
   };
 
-  const currentBlogs = dummyBlogs.slice(first, first + rows);
+  const filteredBlogs =
+    activeCategoryId === 1
+      ? dummyBlogs
+      : dummyBlogs.filter((blog) => blog.categoryId === activeCategoryId);
+
+  const currentBlogs = filteredBlogs.slice(first, first + rows);
 
   return (
     <div className="blogs-container">
@@ -55,7 +60,7 @@ const Blogs = () => {
         <Paginator
           first={first}
           rows={rows}
-          totalRecords={dummyBlogs.length}
+          totalRecords={filteredBlogs.length}
           onPageChange={(e) => setFirst(e.first)}
           className="custom-paginator"
         />
