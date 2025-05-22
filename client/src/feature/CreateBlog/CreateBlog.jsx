@@ -3,7 +3,10 @@ import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Button } from "primereact/button";
 import { Calendar } from "primereact/calendar";
+import { Dropdown } from "primereact/dropdown";
 import "./createBlog.style.css";
+
+import { categories } from "../../data/categoriesData";
 
 const CreateBlogPost = () => {
   const [author, setAuthor] = useState("");
@@ -13,6 +16,9 @@ const CreateBlogPost = () => {
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [imageError, setImageError] = useState(false);
+  const [category, setCategory] = useState(null); // NOVO
+
+  const filteredCategories = categories.filter((cat) => cat.name !== "All"); // NOVO
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,7 +29,14 @@ const CreateBlogPost = () => {
     }
 
     setImageError(false);
-    console.log({ author, title, content, date, image });
+    console.log({
+      author,
+      title,
+      content,
+      date,
+      category,
+      image,
+    });
   };
 
   const handleImageChange = (e) => {
@@ -69,6 +82,21 @@ const CreateBlogPost = () => {
               placeholder="Enter the blog post title"
               required
               maxLength={50}
+            />
+          </div>
+
+          {/* DODAT Dropdown za kategorije */}
+          <div className="form-group">
+            <label htmlFor="category">Category</label>
+            <Dropdown
+              id="category"
+              value={category}
+              onChange={(e) => setCategory(e.value)}
+              options={filteredCategories}
+              optionLabel="name"
+              placeholder="Select a category"
+              itemTemplate={(option) => <div>{option.name}</div>}
+              required
             />
           </div>
 
