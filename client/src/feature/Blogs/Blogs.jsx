@@ -8,13 +8,13 @@ import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 
 const Blogs = () => {
-  const [activeCategoryId, setActiveCategoryId] = useState(1); // 0 = All
+  const [activeCategoryId, setActiveCategoryId] = useState(1);
   const [first, setFirst] = useState(0);
   const rows = 8;
 
   const handleCategoryClick = (id) => {
     setActiveCategoryId(id);
-    setFirst(0); // reset paginaciju kad se promeni kategorija
+    setFirst(0);
   };
 
   const filteredBlogs =
@@ -27,6 +27,8 @@ const Blogs = () => {
   return (
     <div className="blogs-container">
       <div className="blogs-categories-wrapper">
+        <h3>Search blogs by category:</h3>
+        {/* DESKTOP LIST */}
         <ul className="blogs-categories-list">
           {categories.map((category) => (
             <li
@@ -40,6 +42,20 @@ const Blogs = () => {
             </li>
           ))}
         </ul>
+
+        {/* MOBILE DROPDOWN MENU */}
+
+        <select
+          className="blogs-categories-dropdown"
+          value={activeCategoryId}
+          onChange={(e) => handleCategoryClick(Number(e.target.value))}
+        >
+          {categories.map((category) => (
+            <option key={category.id} value={category.id}>
+              {category.name}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div className="blogs-list-wrapper">
