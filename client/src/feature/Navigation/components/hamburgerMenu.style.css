@@ -17,7 +17,12 @@
   right: -100%;
   width: 50%;
   height: 60vh;
-  background-color: white;
+  background: linear-gradient(
+    to bottom,
+    white 0%,
+    #f4f0ff 80%,
+    rgb(232, 225, 255) 100%
+  );
   padding: 70px 20px 20px;
   display: flex;
   flex-direction: column;
