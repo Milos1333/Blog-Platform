@@ -49,11 +49,11 @@ const HamburgerMenu = () => {
 
         <div className="nav-item">
           <NavLink
-            to="/pages"
+            to="/blogs"
             onClick={() => setMenuOpen(false)}
             className="link"
           >
-            Pages
+            Blogs
             <img src={PageImg} width="20px" />
           </NavLink>
         </div>
