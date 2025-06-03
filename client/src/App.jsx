@@ -7,7 +7,7 @@ import About from "./feature/About/About";
 import CreateBlogPost from "./feature/CreateBlog/CreateBlog";
 import ScrollToTop from "./components/ScrollToTop";
 import Blogs from "./feature/Blogs/Blogs";
-import { Contact } from "lucide-react";
+import Contact from "./feature/Contact/Contact";
 
 const App = () => {
   return (

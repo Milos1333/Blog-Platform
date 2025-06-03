@@ -15,6 +15,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  animation: fadeInUp 0.6s ease;
 }
 
 .blogs-categories-wrapper h3 {
@@ -71,6 +72,7 @@
   margin-top: 10px;
   min-height: 80vh;
   height: 100%;
+  animation: fadeInUp 0.6s ease;
 }
 
 .blogs-list-card {
@@ -156,6 +158,17 @@
   text-align: center;
   outline: none;
   background-color: white;
+}
+
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
 }
 
 @media screen and (max-width: 850px) {

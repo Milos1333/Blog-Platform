@@ -1,0 +1,129 @@
+.contact-container {
+  width: 100%;
+  height: 93.2vh;
+  padding-top: 40px;
+  background: linear-gradient(135deg, #dfd4ff, #ffffff);
+  color: black;
+  text-align: center;
+  font-family: "Segoe UI", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-title {
+  font-size: 36px;
+  margin-bottom: 15px;
+  color: rgb(76, 0, 255);
+  animation: fadeInUp 0.6s ease;
+}
+
+.contact-subtitle {
+  font-size: 14px;
+  color: black;
+  margin-bottom: 35px;
+  line-height: 1.6;
+  width: 80%;
+  animation: fadeInUp 0.6s ease;
+}
+
+.skill {
+  color: rgb(76, 0, 255);
+  font-weight: bold;
+  animation: fadeInUp 0.6s ease;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  font-size: 28px;
+  margin-bottom: 30px;
+  animation: fadeInUp 0.6s ease;
+}
+
+.social-icons a {
+  color: black;
+  transition: 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: rgb(76, 0, 255);
+  transform: scale(1.2);
+}
+
+.contact-info {
+  margin-bottom: 30px;
+  font-size: 14px;
+  line-height: 1.8;
+  animation: fadeInUp 0.6s ease;
+}
+
+.contact-info strong {
+  color: rgb(76, 0, 255);
+}
+
+.available {
+  color: black;
+  font-weight: bold;
+}
+
+.not-available {
+  color: #ff5555;
+  font-weight: bold;
+}
+
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .contact-title {
+    font-size: 32px;
+  }
+
+  .contact-subtitle {
+    font-size: 12px;
+  }
+
+  .social-icons {
+    font-size: 26px;
+  }
+
+  .contact-info {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .contact-container {
+    height: 94.05vh;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .contact-title {
+    font-size: 30px;
+    margin-bottom: 30px;
+  }
+
+  .contact-subtitle {
+    font-size: 12px;
+  }
+
+  .social-icons {
+    font-size: 23px;
+  }
+
+  .contact-info {
+    font-size: 11px;
+  }
+}
