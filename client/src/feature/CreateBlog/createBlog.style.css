@@ -134,7 +134,7 @@
 }
 
 .p-dropdown {
-  padding: 6px 10px;
+  padding-left: 10px !important;
   font-size: 11px;
   border: 1px solid #ccc;
   border-radius: 6px;
@@ -146,6 +146,8 @@
 .p-inputtext {
   font-size: 10px !important;
   color: black !important;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
 }
 
 .p-placeholder {
@@ -228,6 +230,8 @@
 .input-image {
   padding: 4px 10px !important;
   width: 100%;
+  cursor: pointer;
+  font-size: 10px !important;
 }
 
 .error-message {

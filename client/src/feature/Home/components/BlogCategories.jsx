@@ -12,7 +12,7 @@ const BlogCategories = () => {
       <div className="categories-grid">
         {categories.slice(1).map((category) => (
           <Link
-            to={`/category/${category.name
+            to={`/blogs/${category.name
               .toLowerCase()
               .replace(/ & /g, "-")
               .replace(/\s+/g, "-")}`}

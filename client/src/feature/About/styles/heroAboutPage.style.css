@@ -9,6 +9,7 @@
   background-image: url(../../../assets/AboutPageImages/aboutPageHero.jpg);
   background-position: center;
   background-size: cover;
+  padding: 0 20px;
 }
 
 .hero-about-us::after {
