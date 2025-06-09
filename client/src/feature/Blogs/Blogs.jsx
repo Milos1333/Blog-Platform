@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import "./blogs.style.css";
 import { categories } from "../../data/categoriesData";
 import { dummyBlogs } from "../../data/dummyBlogs";
@@ -8,13 +9,45 @@ import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 
 const Blogs = () => {
+  const { category } = useParams();
+  const navigate = useNavigate();
+
   const [activeCategoryId, setActiveCategoryId] = useState(1);
   const [first, setFirst] = useState(0);
   const rows = 8;
 
+  useEffect(() => {
+    if (category) {
+      const found = categories.find(
+        (cat) =>
+          cat.name.toLowerCase().replace(/ & /g, "-").replace(/\s+/g, "-") ===
+          category
+      );
+      if (found) {
+        setActiveCategoryId(found.id);
+      } else {
+        setActiveCategoryId(1);
+      }
+    } else {
+      setActiveCategoryId(1);
+    }
+    setFirst(0);
+  }, [category]);
+
   const handleCategoryClick = (id) => {
     setActiveCategoryId(id);
     setFirst(0);
+    const selectedCategory = categories.find((cat) => cat.id === id);
+
+    if (selectedCategory && selectedCategory.id !== 1) {
+      const path = selectedCategory.name
+        .toLowerCase()
+        .replace(/ & /g, "-")
+        .replace(/\s+/g, "-");
+      navigate(`/blogs/${path}`);
+    } else {
+      navigate("/blogs");
+    }
   };
 
   const filteredBlogs =
@@ -44,7 +77,6 @@ const Blogs = () => {
         </ul>
 
         {/* MOBILE DROPDOWN MENU */}
-
         <select
           className="blogs-categories-dropdown"
           value={activeCategoryId}

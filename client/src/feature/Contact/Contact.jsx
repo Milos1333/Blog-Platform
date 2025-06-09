@@ -25,8 +25,8 @@ const Contact = () => {
           <FaInstagram />
         </a>
         <a
-          href="www.facebook.com/milos.klepic.5"
-          https:target="_blank"
+          href="https://www.facebook.com/milos.klepic.5"
+          target="_blank"
           rel="noopener noreferrer"
         >
           <FaFacebook />
@@ -58,8 +58,8 @@ const Contact = () => {
           <strong>Location:</strong> Banja Luka, Bosnia and Herzegovina
         </p>
         <p>
-          <strong>Looking for full-time position:</strong>{" "}
-          <span className="available">Yes ✅</span>
+          <strong>Looking for full-time position:</strong>
+          <span className="available"> Yes ✅</span>
         </p>
       </div>
     </div>

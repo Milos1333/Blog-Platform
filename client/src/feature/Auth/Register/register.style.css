@@ -1,0 +1,138 @@
+.register-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #e2e3ff, #f8fafc);
+  padding: 20px;
+}
+
+.register-box {
+  background-color: white;
+  padding: 40px 30px;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 400px;
+  animation: fadeIn 0.6s ease forwards;
+  opacity: 0;
+  margin-top: 20px;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+.register-title {
+  font-size: 25px;
+  font-weight: bold;
+  color: #1f2937;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 6px;
+  color: #374151;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.form-group input {
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 12px;
+  transition: all 0.2s ease;
+  background-color: #f9fafb;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  background-color: white;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+}
+
+.register-button {
+  background-color: #2563eb;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.1s ease;
+  margin: 10px 0;
+}
+
+.register-button:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 20px;
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.login-link a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 480px) {
+  .register-container {
+    padding: 50px;
+  }
+
+  .register-box {
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  .register-title {
+    font-size: 16px !important;
+  }
+
+  .form-group input {
+    font-size: 10px !important;
+    padding: 10px;
+  }
+
+  .register-button {
+    font-size: 11px !important;
+    padding: 10px;
+  }
+
+  .register-link {
+    font-size: 11px;
+    margin-top: 15px;
+  }
+}
