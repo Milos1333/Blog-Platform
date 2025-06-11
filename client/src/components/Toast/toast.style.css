@@ -1,0 +1,35 @@
+.p-toast-message {
+  background-color: transparent;
+  margin: 15px 0;
+  font-size: 14px;
+  padding: 8px 10px;
+}
+
+.p-toast-message-content {
+  display: flex;
+  align-items: center;
+}
+
+.p-toast-message-icon {
+  display: none;
+}
+
+.p-toast-icon-close {
+  background-color: transparent;
+}
+
+.custom-toast.success {
+  border: 1px solid green;
+}
+
+.custom-toast.error {
+  border: 1px solid red;
+}
+
+.custom-toast.info {
+  border: 1px solid blue;
+}
+
+.custom-toast.warn {
+  border: 1px solid yellow;
+}

@@ -10,23 +10,26 @@ import Blogs from "./feature/Blogs/Blogs";
 import Contact from "./feature/Contact/Contact";
 import Login from "./feature/Auth/Login/Login";
 import Register from "./feature/Auth/Register/Register";
+import { ToastProvider } from "./components/Toast/Toast";
 
 const App = () => {
   return (
     <>
       <BrowserRouter>
-        <Navigation />
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="createBlog" element={<CreateBlogPost />} />
-          <Route path="blogs/:category?" element={<Blogs />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
-        </Routes>
-        <Footer />
+        <ToastProvider>
+          <Navigation />
+          <ScrollToTop />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="about" element={<About />} />
+            <Route path="createBlog" element={<CreateBlogPost />} />
+            <Route path="blogs/:category?" element={<Blogs />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
+          </Routes>
+          <Footer />
+        </ToastProvider>
       </BrowserRouter>
     </>
   );
