@@ -41,7 +41,6 @@
 .register-form {
   display: flex;
   flex-direction: column;
-  gap: 18px;
 }
 
 .form-group {
@@ -83,6 +82,11 @@
   cursor: pointer;
   transition: background-color 0.25s ease, transform 0.1s ease;
   margin: 10px 0;
+}
+
+.form-group p {
+  font-size: 10px;
+  height: 20px;
 }
 
 .register-button:hover {
