@@ -2,7 +2,12 @@ import HamburgerMenu from "./components/HamburgerMenu";
 import "./navigation.style.css";
 import { NavLink, Link } from "react-router-dom";
 
-const Navigation = () => {
+const Navigation = ({ isLoggedIn, setIsLoggedIn }) => {
+  const handleLogOut = () => {
+    localStorage.removeItem("isLoggedIn");
+    setIsLoggedIn(false);
+  };
+
   return (
     <nav className="navigation-container">
       <div className="nav-logo">
@@ -49,17 +54,31 @@ const Navigation = () => {
           Contact
         </NavLink>
       </div>
+
       <div className="nav-auth">
-        <div className="nav-auth-links">
-          <Link to="/register" className="nav-register-link">
-            Register
-          </Link>
-          <span>/</span>
-          <Link to="/login" className="nav-login-link">
-            Log in
-          </Link>
-        </div>
-        <HamburgerMenu />
+        {!isLoggedIn ? (
+          <div className="nav-auth-links">
+            <Link to="/register" className="nav-register-link">
+              Register
+            </Link>
+            <span>/</span>
+            <Link to="/login" className="nav-login-link">
+              Log in
+            </Link>
+          </div>
+        ) : (
+          <div className="nav-auth-links">
+            <p className="nav-register-link" onClick={handleLogOut}>
+              Log out
+            </p>
+          </div>
+        )}
+
+        <HamburgerMenu
+          isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
+          handleLogOut={handleLogOut}
+        />
       </div>
     </nav>
   );

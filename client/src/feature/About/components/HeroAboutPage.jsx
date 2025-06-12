@@ -1,4 +1,3 @@
-import React from "react";
 import "../styles/heroAboutPage.style.css";
 
 const HeroAboutPage = () => {

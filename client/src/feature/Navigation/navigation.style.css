@@ -80,13 +80,16 @@
   justify-content: center;
 }
 
-.nav-auth a {
+.nav-auth a,
+.nav-auth p {
   color: black;
   font-size: 12px;
   transition: color 0.3s ease;
+  cursor: pointer;
 }
 
-.nav-auth a:hover {
+.nav-auth a:hover,
+.nav-auth p:hover {
   color: rgb(76, 0, 255);
 }
 
@@ -99,7 +102,8 @@
     font-size: 13px;
   }
 
-  .nav-auth a {
+  .nav-auth a,
+  .nav-auth p {
     font-size: 11px;
   }
 

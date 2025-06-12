@@ -9,7 +9,7 @@ import BlogImg from "../../../assets/NavigationImages/blog.png";
 import PageImg from "../../../assets/NavigationImages/page.png";
 import ContactImg from "../../../assets/NavigationImages/contact.png";
 
-const HamburgerMenu = () => {
+const HamburgerMenu = ({ isLoggedIn, handleLogOut }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -70,14 +70,21 @@ const HamburgerMenu = () => {
         </div>
 
         <div className="nav-menu-links">
-          <div className="nav-menu-link">
-            <Link to="/register" onClick={() => setMenuOpen(false)}>
-              Register
-            </Link>
-            <Link to="/login" onClick={() => setMenuOpen(false)}>
-              Log in
-            </Link>
-          </div>
+          {!isLoggedIn ? (
+            <div className="nav-menu-link">
+              <Link to="/register" onClick={() => setMenuOpen(false)}>
+                Register
+              </Link>
+              <Link to="/login" onClick={() => setMenuOpen(false)}>
+                Log in
+              </Link>
+            </div>
+          ) : (
+            <p className="nav-menu-link" onClick={handleLogOut}>
+              Log out
+            </p>
+          )}
+
           <img src={userImage} width="50px" />
         </div>
       </div>

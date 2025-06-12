@@ -11,21 +11,28 @@ import Contact from "./feature/Contact/Contact";
 import Login from "./feature/Auth/Login/Login";
 import Register from "./feature/Auth/Register/Register";
 import { ToastProvider } from "./components/Toast/Toast";
+import { useState } from "react";
 
 const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem("isLoggedIn") === "true"
+  );
   return (
     <>
       <BrowserRouter>
         <ToastProvider>
-          <Navigation />
+          <Navigation isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
           <ScrollToTop />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home isLoggedIn={isLoggedIn} />} />
             <Route path="about" element={<About />} />
             <Route path="createBlog" element={<CreateBlogPost />} />
             <Route path="blogs/:category?" element={<Blogs />} />
             <Route path="contact" element={<Contact />} />
-            <Route path="login" element={<Login />} />
+            <Route
+              path="login"
+              element={<Login setIsLoggedIn={setIsLoggedIn} />}
+            />
             <Route path="register" element={<Register />} />
           </Routes>
           <Footer />

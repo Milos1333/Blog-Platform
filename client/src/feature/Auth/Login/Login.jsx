@@ -4,7 +4,7 @@ import axios from "axios";
 import "./login.style.css";
 import { useToast } from "../../../components/Toast/Toast";
 
-const Login = () => {
+const Login = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
   const { show } = useToast();
 
@@ -50,16 +50,20 @@ const Login = () => {
       setError("Password must be at least 6 characters.");
       return;
     }
+
     try {
       const response = await axios.post(
         "http://localhost:5000/login",
         formData
       );
+
+      setIsLoggedIn("true");
+
       show("success", "Success", response.data.message);
 
       navigate("/");
     } catch (err) {
-      if (err.response && err.response.data && err.response.data.message) {
+      if (err.response?.data?.message) {
         setError(err.response.data.message);
       } else {
         setError("Something went wrong. Please try again.");
@@ -73,27 +77,21 @@ const Login = () => {
         <h2 className="login-title">Login</h2>
 
         <form className="login-form" onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>Email</label>
-            <input
-              type="text"
-              name="email"
-              placeholder="Enter your email"
-              value={formData.email}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="form-group-login-register">
-            <label>Password</label>
-            <input
-              type="password"
-              name="password"
-              placeholder="Enter your password"
-              value={formData.password}
-              onChange={handleChange}
-            />
-          </div>
+          {["email", "password"].map((field) => (
+            <div className="form-group-login-register">
+              <label>
+                {field.charAt(0).toLocaleUpperCase() + field.slice(1)}
+              </label>
+              <input
+                type={field === "email" ? "email" : "password"}
+                name={field}
+                placeholder={`Enter your ${field}`}
+                value={formData[field]}
+                onChange={handleChange}
+                autoComplete="off"
+              />
+            </div>
+          ))}
 
           <div className="login-error">
             {error && <p style={{ color: "red" }}>{error}</p>}

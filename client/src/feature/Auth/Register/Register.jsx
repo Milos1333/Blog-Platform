@@ -66,6 +66,7 @@ const Register = () => {
                 name={field}
                 value={formData[field]}
                 onChange={handleChange}
+                autoComplete="off"
               />
             </div>
           ))}
