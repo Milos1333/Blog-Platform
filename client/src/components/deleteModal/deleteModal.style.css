@@ -1,0 +1,73 @@
+.delete-modal-component {
+  background-color: white;
+  padding: 15px 20px 20px 20px;
+}
+
+.delete-modal-component .p-dialog-title {
+  font-size: 16px;
+}
+
+.delete-modal-component .p-dialog-content {
+  font-size: 12px;
+}
+
+.delete-modal-component .p-dialog-header-icon {
+  background: transparent;
+  border: none;
+}
+
+.delete-modal-component .p-button {
+  padding: 0;
+  margin: 0px 10px;
+  font-size: 10px;
+  background-color: transparent;
+  border: none !important;
+  transition: transform 0.4s ease-out;
+}
+
+.delete-modal-component .p-button:focus {
+  box-shadow: none !important;
+}
+
+.delete-modal-component .p-button span {
+  margin: 0 1px;
+}
+
+.delete-modal-component .p-button:hover {
+  transform: scale(1.02);
+}
+
+.delete-modal-component .p-button[aria-label="Yes"] {
+  color: green !important;
+}
+
+.delete-modal-component .p-button[aria-label="No"] {
+  color: red !important;
+}
+
+@media screen and (max-width: 500px) {
+  .delete-modal-component {
+    width: 300px !important;
+  }
+
+  .delete-modal-component .p-dialog-title {
+    font-size: 14px;
+  }
+
+  .delete-modal-component .p-dialog-content {
+    font-size: 10px;
+  }
+
+  .delete-modal-component .p-button {
+    font-size: 8px;
+  }
+
+  .delete-modal-component .p-dialog-header-icon svg {
+    width: 8px !important;
+    height: 8px !important;
+  }
+
+  .delete-modal-buttons {
+    margin-top: 10px;
+  }
+}
