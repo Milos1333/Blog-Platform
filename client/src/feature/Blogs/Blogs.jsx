@@ -7,10 +7,12 @@ import { Paginator } from "primereact/paginator";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
+import { InputSwitch } from "primereact/inputswitch";
 
 const Blogs = () => {
   const { category } = useParams();
   const navigate = useNavigate();
+  const [checked, setChecked] = useState(false);
 
   const [activeCategoryId, setActiveCategoryId] = useState(1);
   const [first, setFirst] = useState(0);
@@ -88,6 +90,12 @@ const Blogs = () => {
             </option>
           ))}
         </select>
+      </div>
+
+      <div className="toggle-switch-container">
+        <p>All</p>
+        <InputSwitch checked={checked} onChange={(e) => setChecked(e.value)} />
+        <p>My</p>
       </div>
 
       <div className="blogs-list-wrapper">

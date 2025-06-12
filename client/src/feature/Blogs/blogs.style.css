@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 50px;
   padding: 90px 20px;
   width: 100%;
   overflow-y: scroll;
@@ -16,6 +15,7 @@
   align-items: center;
   flex-direction: column;
   animation: fadeInUp 0.6s ease;
+  margin: 20px 0 30px 0;
 }
 
 .blogs-categories-wrapper h3 {
@@ -91,6 +91,28 @@
   cursor: pointer;
 }
 
+.toggle-switch-container {
+  animation: fadeInUp 0.6s ease;
+  display: flex;
+  font-size: 8px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+  gap: 5px;
+}
+
+.p-inputswitch {
+  border-radius: 30px;
+  transform: scale(0.7);
+}
+
+.toggle-switch-container [data-p-highlight="true"] {
+  background-color: rgb(17, 0, 255) !important;
+}
+
+.toggle-switch-container [data-p-highlight="false"] {
+  background-color: rgba(0, 0, 255, 0.175) !important;
+}
 .blog-image {
   height: 130px !important;
   width: 100% !important;
