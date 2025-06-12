@@ -25,9 +25,9 @@ const PlatformStats = () => {
       </p>
 
       <div className="platform-stats-grid">
-        <CountUpStat target={245} inView={inView} label="Blog Posts" />
+        <CountUpStat target={245} inView={inView} label="Authors Registered" />
         <CountUpStat target={130} inView={inView} label="Active Users" />
-        <CountUpStat target={680} inView={inView} label="Comments Shared" />
+        <CountUpStat target={680} inView={inView} label="Blog posts" />
       </div>
     </div>
   );

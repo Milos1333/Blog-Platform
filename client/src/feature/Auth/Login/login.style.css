@@ -132,7 +132,7 @@
     font-size: 16px !important;
   }
 
-  .form-group input {
+  .form-group-login-register input {
     font-size: 10px !important;
     padding: 10px;
   }
@@ -148,7 +148,7 @@
     margin-top: 15px;
   }
 
-  .form-group label {
+  .form-group-login-register label {
     font-size: 12px !important;
   }
 }

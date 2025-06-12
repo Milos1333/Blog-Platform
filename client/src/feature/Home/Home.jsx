@@ -5,10 +5,10 @@ import PlatformStats from "./components/PlatformStats";
 import RecentBlogPosts from "./components/RecentBlogPosts";
 import "./home.style.css";
 
-const Home = () => {
+const Home = ({ isLoggedIn }) => {
   return (
     <div className="home-container">
-      <LandingPage />
+      <LandingPage isLoggedIn={isLoggedIn} />
       <PlatformStats />
       <RecentBlogPosts />
       <BlogCategories />
