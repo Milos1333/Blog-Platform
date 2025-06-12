@@ -33,3 +33,55 @@
 .custom-toast.warn {
   border: 1px solid yellow;
 }
+
+.p-toast-icon-close:hover,
+.p-toast-icon-close {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+@media screen and (max-width: 700px) {
+  .p-toast {
+    display: flex;
+    justify-content: end;
+  }
+
+  .custom-toast {
+    width: 300px;
+    margin-right: 0 !important;
+  }
+
+  .p-toast-message {
+    font-size: 12px;
+  }
+
+  .p-toast-detail {
+    font-size: 10px;
+  }
+
+  .p-toast-icon-close svg {
+    width: 8px !important;
+    height: 8px !important;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .p-toast-icon-close svg {
+    width: 7px !important;
+    height: 7px !important;
+  }
+
+  .p-toast-message {
+    font-size: 10px;
+  }
+
+  .p-toast-detail {
+    font-size: 8px;
+  }
+
+  .custom-toast {
+    width: 250px;
+    padding: 4px 10px;
+  }
+}
