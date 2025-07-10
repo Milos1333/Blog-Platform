@@ -4,11 +4,12 @@ import { InputTextarea } from "primereact/inputtextarea";
 import { Button } from "primereact/button";
 import { Calendar } from "primereact/calendar";
 import { Dropdown } from "primereact/dropdown";
+import { useNavigate } from "react-router-dom";
 import "./createBlog.style.css";
-
 import { categories } from "../../data/categoriesData";
+import { useToast } from "../../components/Toast/Toast";
 
-const CreateBlogPost = () => {
+const CreateBlog = ({ addNewBlog }) => {
   const [author, setAuthor] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -17,7 +18,9 @@ const CreateBlogPost = () => {
   const [imagePreview, setImagePreview] = useState(null);
   const [imageError, setImageError] = useState(false);
   const [category, setCategory] = useState(null);
+  const { show } = useToast();
 
+  const navigate = useNavigate();
   const filteredCategories = categories.filter((cat) => cat.name !== "All");
 
   const handleSubmit = (e) => {
@@ -29,14 +32,31 @@ const CreateBlogPost = () => {
     }
 
     setImageError(false);
-    console.log({
+
+    const newPost = {
+      id: Date.now(),
       author,
       title,
       content,
-      date,
-      category,
-      image,
-    });
+      date: date ? date.toLocaleDateString() : "",
+      category: category ? category.name : "",
+      image: imagePreview,
+      description: content.slice(0, 100) + "...",
+      creator: author,
+    };
+
+    addNewBlog(newPost);
+    show("success", "Success", "Blog post created successfully!");
+    navigate("/blogs");
+
+    // Reset form
+    setAuthor("");
+    setTitle("");
+    setContent("");
+    setDate(null);
+    setCategory(null);
+    setImage(null);
+    setImagePreview(null);
   };
 
   const handleImageChange = (e) => {
@@ -69,7 +89,7 @@ const CreateBlogPost = () => {
               }}
               placeholder="Enter your full name"
               required
-              maxLength={50}
+              maxLength={15}
             />
           </div>
 
@@ -116,7 +136,7 @@ const CreateBlogPost = () => {
             <Calendar
               id="date"
               value={date}
-              onChange={(e) => setDate(e.target.value)}
+              onChange={(e) => setDate(e.value)}
               placeholder="Press to select a date"
               required
             />
@@ -159,4 +179,4 @@ const CreateBlogPost = () => {
   );
 };
 
-export default CreateBlogPost;
+export default CreateBlog;
