@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import "./blogs.style.css";
-import { categories } from "../../data/categoriesData";
-import { dummyBlogs } from "../../data/dummyBlogs";
+import "../styles/blogs.style.css";
+import { categories } from "../../../data/categoriesData";
 import { Paginator } from "primereact/paginator";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import { InputSwitch } from "primereact/inputswitch";
 
-const Blogs = () => {
+const Blogs = ({ blogs }) => {
   const { category } = useParams();
   const navigate = useNavigate();
   const [checked, setChecked] = useState(false);
@@ -54,8 +53,12 @@ const Blogs = () => {
 
   const filteredBlogs =
     activeCategoryId === 1
-      ? dummyBlogs
-      : dummyBlogs.filter((blog) => blog.categoryId === activeCategoryId);
+      ? blogs
+      : blogs.filter(
+          (blog) =>
+            blog.category ===
+            categories.find((c) => c.id === activeCategoryId)?.name
+        );
 
   const currentBlogs = filteredBlogs.slice(first, first + rows);
 

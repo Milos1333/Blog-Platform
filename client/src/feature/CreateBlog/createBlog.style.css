@@ -189,6 +189,7 @@
 .p-dropdown .p-dropdown-trigger-icon {
   color: rgb(76, 0, 255);
   font-size: 11px;
+  margin-right: 5px;
 }
 
 .p-datepicker {
