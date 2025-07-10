@@ -85,7 +85,9 @@ const HamburgerMenu = ({ isLoggedIn, setShowModal }) => {
             </p>
           )}
 
-          <img src={userImage} width="50px" />
+          <Link to="/login" onClick={() => setMenuOpen(false)}>
+            <img src={userImage} width="50px" />
+          </Link>
         </div>
       </div>
     </div>

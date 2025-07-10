@@ -88,7 +88,6 @@ const Login = ({ setIsLoggedIn }) => {
                 placeholder={`Enter your ${field}`}
                 value={formData[field]}
                 onChange={handleChange}
-                autoComplete="off"
               />
             </div>
           ))}
