@@ -8,8 +8,9 @@ import { useNavigate } from "react-router-dom";
 import "./createBlog.style.css";
 import { categories } from "../../data/categoriesData";
 import { useToast } from "../../components/Toast/Toast";
+import ApiService from "../../core/ApiService";
 
-const CreateBlog = ({ addNewBlog }) => {
+const CreateBlog = () => {
   const [author, setAuthor] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -19,45 +20,9 @@ const CreateBlog = ({ addNewBlog }) => {
   const [imageError, setImageError] = useState(false);
   const [category, setCategory] = useState(null);
   const { show } = useToast();
-
   const navigate = useNavigate();
+
   const filteredCategories = categories.filter((cat) => cat.name !== "All");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (!image) {
-      setImageError(true);
-      return;
-    }
-
-    setImageError(false);
-
-    const newPost = {
-      id: Date.now(),
-      author,
-      title,
-      content,
-      date: date ? date.toLocaleDateString() : "",
-      category: category ? category.name : "",
-      image: imagePreview,
-      description: content.slice(0, 100) + "...",
-      creator: author,
-    };
-
-    addNewBlog(newPost);
-    show("success", "Success", "Blog post created successfully!");
-    navigate("/blogs");
-
-    // Reset form
-    setAuthor("");
-    setTitle("");
-    setContent("");
-    setDate(null);
-    setCategory(null);
-    setImage(null);
-    setImagePreview(null);
-  };
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -65,6 +30,42 @@ const CreateBlog = ({ addNewBlog }) => {
       setImage(file);
       setImagePreview(URL.createObjectURL(file));
       setImageError(false);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!image) {
+      setImageError(true);
+      return;
+    }
+
+    const newPost = {
+      user_id: 1,
+      title,
+      content,
+      category: category?.name || "",
+      image: imagePreview,
+      created_at: date ? date.toISOString().split("T")[0] : "",
+    };
+
+    try {
+      await ApiService.createPost(newPost);
+      show("success", "Success", "Blog post created successfully!");
+      navigate("/blogs");
+
+      // Reset form
+      setAuthor("");
+      setTitle("");
+      setContent("");
+      setDate(null);
+      setCategory(null);
+      setImage(null);
+      setImagePreview(null);
+    } catch (error) {
+      console.error("Create post error:", error);
+      show("error", "Error", "Failed to create post.");
     }
   };
 

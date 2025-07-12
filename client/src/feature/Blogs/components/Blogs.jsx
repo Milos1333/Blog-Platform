@@ -107,10 +107,12 @@ const Blogs = ({ blogs }) => {
             <div key={blog.id} className="blogs-list-card">
               <img src={blog.image} alt={blog.title} className="blog-image" />
               <h3 className="blog-title">{blog.title}</h3>
-              <p className="blog-description">{blog.description}</p>
+              <p className="blog-description">{blog.content}</p>{" "}
               <div className="blog-footer">
-                <span className="blog-creator">{blog.creator}</span>
-                <span className="blog-date">{blog.date}</span>
+                <span className="blog-creator">Author ID: {blog.user_id}</span>
+                <span className="blog-date">
+                  {blog.created_at ? blog.created_at.split("T")[0] : ""}
+                </span>
               </div>
             </div>
           ))}
