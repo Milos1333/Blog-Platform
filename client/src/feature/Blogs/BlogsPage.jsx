@@ -1,17 +1,34 @@
 import { useState, useEffect } from "react";
 import Blogs from "./components/Blogs";
+import ApiService from "../../core/ApiService";
 import "./blogsPage.style.css";
 
-const BlogsPage = ({ blogs }) => {
-  const [currentBlogs, setCurrentBlogs] = useState(blogs);
+const BlogsPage = () => {
+  const [currentBlogs, setCurrentBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setCurrentBlogs(blogs);
-  }, [blogs]);
+    const fetchBlogs = async () => {
+      try {
+        const posts = await ApiService.getPosts();
+        setCurrentBlogs(posts);
+      } catch (error) {
+        console.error("Error fetching blogs:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBlogs();
+  }, []);
 
   return (
     <div>
-      {currentBlogs.length > 0 ? (
+      {loading ? (
+        <div className="no-content">
+          <p>Loading blogs...</p>
+        </div>
+      ) : currentBlogs.length > 0 ? (
         <Blogs blogs={currentBlogs} />
       ) : (
         <div className="no-content">

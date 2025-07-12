@@ -98,14 +98,24 @@ app.post("/posts", (req, res) => {
         return res.status(500).json({ message: "Database error." });
       }
 
-      res
-        .status(201)
-        .json({
-          message: "Post created successfully.",
-          postId: result.insertId,
-        });
+      res.status(201).json({
+        message: "Post created successfully.",
+        postId: result.insertId,
+      });
     }
   );
+});
+
+// Get all blog posts
+app.get("/posts", (req, res) => {
+  const query = "SELECT * FROM posts ORDER BY created_at DESC";
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error("Error fetching posts:", err);
+      return res.status(500).json({ message: "Database error" });
+    }
+    res.json(results);
+  });
 });
 
 const PORT = 5000;
