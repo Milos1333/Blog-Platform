@@ -76,6 +76,38 @@ app.post("/login", (req, res) => {
   });
 });
 
+// Create blog post
+app.post("/posts", (req, res) => {
+  const { user_id, title, content, category, image } = req.body;
+
+  if (!user_id || !title || !content) {
+    return res.status(400).json({ message: "Missing required fields." });
+  }
+
+  const insertPostQuery = `
+    INSERT INTO posts (user_id, title, content, category, image)
+    VALUES (?, ?, ?, ?, ?)
+  `;
+
+  db.query(
+    insertPostQuery,
+    [user_id, title, content, category, image],
+    (err, result) => {
+      if (err) {
+        console.error("Error inserting post:", err);
+        return res.status(500).json({ message: "Database error." });
+      }
+
+      res
+        .status(201)
+        .json({
+          message: "Post created successfully.",
+          postId: result.insertId,
+        });
+    }
+  );
+});
+
 const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
