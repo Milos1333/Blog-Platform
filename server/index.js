@@ -106,7 +106,7 @@ app.post("/posts", (req, res) => {
   );
 });
 
-// Get all blog posts
+//  Get all blog posts
 app.get("/posts", (req, res) => {
   const query = "SELECT * FROM posts ORDER BY created_at DESC";
   db.query(query, (err, results) => {
