@@ -10,7 +10,7 @@ import { categories } from "../../data/categoriesData";
 import { useToast } from "../../components/Toast/Toast";
 import ApiService from "../../core/ApiService";
 
-const CreateBlog = () => {
+const CreateBlog = ({ fetchBlogs }) => {
   const [author, setAuthor] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -41,21 +41,41 @@ const CreateBlog = () => {
       return;
     }
 
-    const newPost = {
-      user_id: 1,
-      title,
-      content,
-      category: category?.name || "",
-      image: imagePreview,
-      created_at: date ? date.toISOString().split("T")[0] : "",
-    };
-
     try {
+      // 1. Upload slike
+      const formData = new FormData();
+      formData.append("image", image);
+
+      const uploadResponse = await fetch("http://localhost:5000/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!uploadResponse.ok) {
+        throw new Error("Image upload failed");
+      }
+
+      const uploadData = await uploadResponse.json();
+
+      // 2. Kreiranje bloga
+      const newPost = {
+        user_id: 1,
+        title,
+        content,
+        category: category?.name || "",
+        image: uploadData.imageUrl,
+        created_at: date ? date.toISOString().split("T")[0] : "",
+      };
+
       await ApiService.createPost(newPost);
+
+      // ✅ Osveži blogove
+      if (fetchBlogs) await fetchBlogs();
+
       show("success", "Success", "Blog post created successfully!");
       navigate("/blogs");
 
-      // Reset form
+      // Reset forme
       setAuthor("");
       setTitle("");
       setContent("");
