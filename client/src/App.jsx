@@ -11,19 +11,36 @@ import Contact from "./feature/Contact/Contact";
 import Login from "./feature/Auth/Login/Login";
 import Register from "./feature/Auth/Register/Register";
 import { ToastProvider } from "./components/Toast/Toast";
-import { useState } from "react";
-import { dummyBlogs } from "./data/dummyBlogs"; // Inicijalni blogovi
+import { useState, useEffect } from "react";
+import ApiService from "./core/ApiService";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("isLoggedIn") === "true"
   );
 
-  const [blogs, setBlogs] = useState(dummyBlogs);
+  const [blogs, setBlogs] = useState([]);
+  const [loadingBlogs, setLoadingBlogs] = useState(true);
 
-  const addNewBlog = (newBlog) => {
-    setBlogs((prev) => [newBlog, ...prev]);
+  const fetchBlogs = async () => {
+    try {
+      setLoadingBlogs(true);
+      const data = await ApiService.getPosts();
+      setBlogs(data);
+    } catch (err) {
+      console.error("Failed to fetch posts:", err);
+    } finally {
+      setLoadingBlogs(false);
+    }
   };
+
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("isLoggedIn", isLoggedIn.toString());
+  }, [isLoggedIn]);
 
   return (
     <BrowserRouter>
@@ -35,10 +52,13 @@ const App = () => {
           <Route path="about" element={<About />} />
           <Route
             path="createBlog"
-            element={<CreateBlog addNewBlog={addNewBlog} />}
+            element={<CreateBlog fetchBlogs={fetchBlogs} />}
           />
           <Route path="contact" element={<Contact />} />
-          <Route path="blogs/*" element={<BlogsPage blogs={blogs} />} />
+          <Route
+            path="blogs/:category?"
+            element={<BlogsPage blogs={blogs} loading={loadingBlogs} />}
+          />
           <Route
             path="login"
             element={<Login setIsLoggedIn={setIsLoggedIn} />}

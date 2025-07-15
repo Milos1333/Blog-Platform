@@ -60,7 +60,9 @@ const Blogs = ({ blogs }) => {
             categories.find((c) => c.id === activeCategoryId)?.name
         );
 
-  const currentBlogs = filteredBlogs.slice(first, first + rows);
+  const sortedBlogs = [...filteredBlogs].sort((a, b) => b.id - a.id);
+
+  const currentBlogs = sortedBlogs.slice(first, first + rows);
 
   return (
     <div className="blogs-container">
@@ -102,29 +104,43 @@ const Blogs = ({ blogs }) => {
       </div>
 
       <div className="blogs-list-wrapper">
-        <div className="blogs-list-grid">
-          {currentBlogs.map((blog) => (
-            <div key={blog.id} className="blogs-list-card">
-              <img src={blog.image} alt={blog.title} className="blog-image" />
-              <h3 className="blog-title">{blog.title}</h3>
-              <p className="blog-description">{blog.content}</p>{" "}
-              <div className="blog-footer">
-                <span className="blog-creator">Author ID: {blog.user_id}</span>
-                <span className="blog-date">
-                  {blog.created_at ? blog.created_at.split("T")[0] : ""}
-                </span>
-              </div>
+        {sortedBlogs.length === 0 ? (
+          <div className="no-content-blogs">
+            <p>No blogs found for the selected category.</p>
+          </div>
+        ) : (
+          <>
+            <div className="blogs-list-grid">
+              {currentBlogs.map((blog) => (
+                <div key={blog.id} className="blogs-list-card">
+                  <img
+                    src={blog.image}
+                    alt={blog.title}
+                    className="blog-image"
+                  />
+                  <h3 className="blog-title">{blog.title}</h3>
+                  <p className="blog-description">{blog.content}</p>
+                  <div className="blog-footer">
+                    <span className="blog-creator">
+                      Author ID: {blog.user_id}
+                    </span>
+                    <span className="blog-date">
+                      {blog.created_at ? blog.created_at.split("T")[0] : ""}
+                    </span>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
 
-        <Paginator
-          first={first}
-          rows={rows}
-          totalRecords={filteredBlogs.length}
-          onPageChange={(e) => setFirst(e.first)}
-          className="custom-paginator"
-        />
+            <Paginator
+              first={first}
+              rows={rows}
+              totalRecords={sortedBlogs.length}
+              onPageChange={(e) => setFirst(e.first)}
+              className="custom-paginator"
+            />
+          </>
+        )}
       </div>
     </div>
   );

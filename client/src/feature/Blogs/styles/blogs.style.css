@@ -48,6 +48,10 @@
   color: rgb(76, 0, 255);
 }
 
+.blogs-categories-wrapper ul li:hover {
+  background-color: rgba(15, 0, 71, 0.134);
+}
+
 .blogs-categories-wrapper ul li.active {
   background-color: rgb(76, 0, 255);
   color: white;
@@ -70,7 +74,7 @@
   gap: 20px;
   width: 80%;
   margin-top: 10px;
-  min-height: 80vh;
+  min-height: 40vh;
   height: 100%;
   animation: fadeInUp 0.6s ease;
 }
@@ -117,6 +121,12 @@
   height: 130px !important;
   width: 100% !important;
   object-fit: cover;
+}
+
+.no-content-blogs {
+  font-size: 15px;
+  height: 40vh;
+  padding-top: 120px;
 }
 
 .blog-title {
@@ -186,6 +196,10 @@
   text-align: center;
   outline: none;
   background-color: white;
+}
+
+.blogs-categories-dropdown:hover {
+  cursor: pointer;
 }
 
 @keyframes fadeInUp {
@@ -278,6 +292,11 @@
 @media screen and (max-width: 550px) {
   .blogs-categories-list {
     display: none !important;
+  }
+
+  .no-content-blogs {
+    height: 50vh;
+    font-size: 12px;
   }
 
   .blogs-categories-dropdown {
