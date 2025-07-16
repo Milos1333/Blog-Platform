@@ -1,43 +1,14 @@
 import "../styles/recentBlogPosts.style.css";
 import { ArrowRight } from "lucide-react";
-import recentImagePost1 from "../../../assets/HomePageImages/recentBlog1.jpeg";
-import recentImagePost2 from "../../../assets/HomePageImages/recentBlog2.jpeg";
-import recentImagePost3 from "../../../assets/HomePageImages/recentBlog3.jpeg";
-import recentImagePost4 from "../../../assets/HomePageImages/recentBlog4.jpg";
 import { Link } from "react-router-dom";
 
-const blogPosts = [
-  {
-    id: 1,
-    title: "Embracing the Mountain Air",
-    image: recentImagePost1,
-    date: "April 14, 2025",
-    user: "Luka Pavlović",
-  },
-  {
-    id: 2,
-    title: "Still Reflections by the Lake",
-    image: recentImagePost2,
-    date: "April 13, 2025",
-    user: "Ana Kovač",
-  },
-  {
-    id: 3,
-    title: "Under the Stadium Lights",
-    image: recentImagePost3,
-    date: "April 12, 2025",
-    user: "Nikola Bajić",
-  },
-  {
-    id: 4,
-    title: "Rise of Urban Giants",
-    image: recentImagePost4,
-    date: "April 11, 2025",
-    user: "Teodora Ilić",
-  },
-];
+const RecentBlogPosts = ({ blogs }) => {
+  const sortedBlogs = [...blogs].sort((a, b) => {
+    return b.id - a.id;
+  });
 
-const RecentBlogPosts = () => {
+  const recentFour = sortedBlogs.slice(0, 4);
+
   return (
     <div className="recent-blog-posts">
       <div className="header-recent-posts">
@@ -50,15 +21,17 @@ const RecentBlogPosts = () => {
       </div>
 
       <div className="blog-grid">
-        {blogPosts.map((post) => (
-          <div key={post.id} className="blog-card">
-            <img src={post.image} alt={post.title} />
-            <div className="blog-content">
-              <h3>{post.title}</h3>
-              <p>{post.date}</p>
+        {recentFour.map((blog) => (
+          <div key={blog.id} className="blogs-list-card">
+            <img src={blog.image} alt={blog.title} className="blog-image" />
+            <h3 className="blog-title">{blog.title}</h3>
+            <p className="blog-description">{blog.content}</p>
+            <div className="blog-footer">
+              <span className="blog-creator">Author ID: {blog.user_id}</span>
+              <span className="blog-date">
+                {blog.created_at ? blog.created_at.split("T")[0] : ""}
+              </span>
             </div>
-            <button className="button-view-more">View more</button>
-            <p className="recent-blog-user">Created by: {post.user}</p>
           </div>
         ))}
       </div>

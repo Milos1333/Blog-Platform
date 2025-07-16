@@ -59,6 +59,8 @@ const Login = ({ setIsLoggedIn }) => {
 
       setIsLoggedIn("true");
 
+      localStorage.setItem("user", JSON.stringify(response.data.user));
+
       show("success", "Success", response.data.message);
 
       navigate("/");

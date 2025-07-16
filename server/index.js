@@ -170,7 +170,12 @@ app.post("/posts", (req, res) => {
 
 // Dobavljanje svih blogova
 app.get("/posts", (req, res) => {
-  const query = "SELECT * FROM posts ORDER BY created_at DESC";
+  const query = `
+    SELECT posts.*, users.username
+    FROM posts
+    JOIN users ON posts.user_id = users.id
+    ORDER BY posts.created_at DESC
+  `;
   db.query(query, (err, results) => {
     if (err) {
       console.error("Error fetching posts:", err);
@@ -179,7 +184,6 @@ app.get("/posts", (req, res) => {
     res.json(results);
   });
 });
-
 // Brisanje blog posta
 app.delete("/posts/:id", (req, res) => {
   const postId = req.params.id;

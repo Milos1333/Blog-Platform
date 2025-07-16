@@ -48,11 +48,16 @@ const App = () => {
         <Navigation isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         <ScrollToTop />
         <Routes>
-          <Route path="/" element={<Home isLoggedIn={isLoggedIn} />} />
+          <Route
+            path="/"
+            element={<Home isLoggedIn={isLoggedIn} blogs={blogs} />}
+          />
           <Route path="about" element={<About />} />
           <Route
             path="createBlog"
-            element={<CreateBlog fetchBlogs={fetchBlogs} />}
+            element={
+              <CreateBlog fetchBlogs={fetchBlogs} isLoggedIn={isLoggedIn} />
+            }
           />
           <Route path="contact" element={<Contact />} />
           <Route
