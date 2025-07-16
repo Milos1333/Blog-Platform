@@ -7,8 +7,10 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import { InputSwitch } from "primereact/inputswitch";
+import BlogImageDelete from "../../../assets/BlogPageImages/recycle-bin.png";
+import ApiService from "../../../core/ApiService";
 
-const Blogs = ({ blogs }) => {
+const Blogs = ({ blogs, setBlogs }) => {
   const { category } = useParams();
   const navigate = useNavigate();
   const [checked, setChecked] = useState(false);
@@ -16,6 +18,22 @@ const Blogs = ({ blogs }) => {
   const [activeCategoryId, setActiveCategoryId] = useState(1);
   const [first, setFirst] = useState(0);
   const rows = 8;
+
+  const handleDelete = async (id) => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this blog?"
+    );
+    if (!confirmed) return;
+
+    try {
+      await ApiService.deletePost(id);
+      setBlogs((prev) => prev.filter((blog) => blog.id !== id));
+      console.log("Blog deleted:", id);
+    } catch (error) {
+      console.error("Error deleting blog:", error);
+      alert("Failed to delete blog.");
+    }
+  };
 
   useEffect(() => {
     if (category) {
@@ -128,6 +146,12 @@ const Blogs = ({ blogs }) => {
                       {blog.created_at ? blog.created_at.split("T")[0] : ""}
                     </span>
                   </div>
+                  <img
+                    src={BlogImageDelete}
+                    alt="Icon-Delete"
+                    className="blog-delete-icon"
+                    onClick={() => handleDelete(blog.id)}
+                  />
                 </div>
               ))}
             </div>

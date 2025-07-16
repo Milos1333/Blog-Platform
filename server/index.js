@@ -180,6 +180,26 @@ app.get("/posts", (req, res) => {
   });
 });
 
+// Brisanje blog posta
+app.delete("/posts/:id", (req, res) => {
+  const postId = req.params.id;
+
+  const deleteQuery = "DELETE FROM posts WHERE id = ?";
+  db.query(deleteQuery, [postId], (err, result) => {
+    if (err) {
+      console.error("Error deleting post:", err);
+      return res.status(500).json({ message: "Database error" });
+    }
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+
+    console.log("Post deleted successfully, ID:", postId);
+    res.status(200).json({ message: "Post deleted successfully" });
+  });
+});
+
 // Start servera
 const PORT = 5000;
 app.listen(PORT, () => {

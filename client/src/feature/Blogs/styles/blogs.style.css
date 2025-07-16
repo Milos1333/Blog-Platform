@@ -95,6 +95,24 @@
   cursor: pointer;
 }
 
+.blog-delete-icon {
+  width: 15px;
+  display: none;
+  transition: opacity 0.3s ease;
+}
+
+.blogs-list-card:hover > .blog-delete-icon {
+  display: flex;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  opacity: 0.7;
+}
+
+.blog-delete-icon:hover {
+  opacity: 1 !important;
+}
+
 .toggle-switch-container {
   animation: fadeInUp 0.6s ease;
   display: flex;
