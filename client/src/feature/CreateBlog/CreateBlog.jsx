@@ -10,8 +10,7 @@ import { categories } from "../../data/categoriesData";
 import { useToast } from "../../components/Toast/Toast";
 import ApiService from "../../core/ApiService";
 
-const CreateBlog = ({ fetchBlogs }) => {
-  const [author, setAuthor] = useState("");
+const CreateBlog = ({ fetchBlogs, isLoggedIn }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [date, setDate] = useState(null);
@@ -32,9 +31,14 @@ const CreateBlog = ({ fetchBlogs }) => {
       setImageError(false);
     }
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!isLoggedIn) {
+      alert("You must be logged in to create a blog post.");
+      navigate("/login");
+      return;
+    }
 
     if (!image) {
       setImageError(true);
@@ -42,7 +46,6 @@ const CreateBlog = ({ fetchBlogs }) => {
     }
 
     try {
-      // 1. Upload slike
       const formData = new FormData();
       formData.append("image", image);
 
@@ -56,10 +59,11 @@ const CreateBlog = ({ fetchBlogs }) => {
       }
 
       const uploadData = await uploadResponse.json();
+      const loggedInUser = JSON.parse(localStorage.getItem("user"));
+      const userId = loggedInUser?.id;
 
-      // 2. Kreiranje bloga
       const newPost = {
-        user_id: 1,
+        user_id: userId,
         title,
         content,
         category: category?.name || "",
@@ -69,14 +73,11 @@ const CreateBlog = ({ fetchBlogs }) => {
 
       await ApiService.createPost(newPost);
 
-      // ✅ Osveži blogove
       if (fetchBlogs) await fetchBlogs();
 
       show("success", "Success", "Blog post created successfully!");
       navigate("/blogs");
 
-      // Reset forme
-      setAuthor("");
       setTitle("");
       setContent("");
       setDate(null);
@@ -98,22 +99,6 @@ const CreateBlog = ({ fetchBlogs }) => {
         </p>
 
         <form onSubmit={handleSubmit} className="create-post-form">
-          <div className="form-group">
-            <label htmlFor="author">Author (Full Name)</label>
-            <InputText
-              id="author"
-              value={author}
-              onChange={(e) => {
-                const input = e.target.value;
-                const onlyLetters = input.replace(/[0-9]/g, "");
-                setAuthor(onlyLetters);
-              }}
-              placeholder="Enter your full name"
-              required
-              maxLength={15}
-            />
-          </div>
-
           <div className="form-group">
             <label htmlFor="title">Blog Title</label>
             <InputText
