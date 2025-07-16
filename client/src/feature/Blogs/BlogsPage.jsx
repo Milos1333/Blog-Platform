@@ -1,7 +1,7 @@
 import Blogs from "./components/Blogs";
 import "./blogsPage.style.css";
 
-const BlogsPage = ({ blogs, loading }) => {
+const BlogsPage = ({ blogs, loading, setBlogs }) => {
   return (
     <div>
       {loading ? (
@@ -9,7 +9,7 @@ const BlogsPage = ({ blogs, loading }) => {
           <p>Loading blogs...</p>
         </div>
       ) : blogs.length > 0 ? (
-        <Blogs blogs={blogs} />
+        <Blogs blogs={blogs} setBlogs={setBlogs} />
       ) : (
         <div className="no-content">
           <p>No blogs available.</p>

@@ -57,7 +57,13 @@ const App = () => {
           <Route path="contact" element={<Contact />} />
           <Route
             path="blogs/:category?"
-            element={<BlogsPage blogs={blogs} loading={loadingBlogs} />}
+            element={
+              <BlogsPage
+                blogs={blogs}
+                loading={loadingBlogs}
+                setBlogs={setBlogs}
+              />
+            }
           />
           <Route
             path="login"
