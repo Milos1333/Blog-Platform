@@ -6,8 +6,8 @@ const Contact = () => {
     <div className="contact-container">
       <h2 className="contact-title">Contact me:</h2>
       <p className="contact-subtitle">
-        I'm a Frontend Developer skilled in <span className="skill">HTML</span>,{" "}
-        <span className="skill">CSS</span>,{" "}
+        I am a Frontend Developer skilled in <span className="skill">HTML</span>
+        , <span className="skill">CSS</span>,{" "}
         <span className="skill">JavaScript</span>, and{" "}
         <span className="skill">React</span>.
         <br />
