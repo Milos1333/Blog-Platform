@@ -80,6 +80,12 @@
   font-size: 11px !important;
 }
 
+.username-nav {
+  font-size: 14px !important;
+  font-weight: bold;
+  cursor: auto !important;
+}
+
 @media screen and (max-width: 600px) {
   .hamburger-wrapper {
     display: block;
