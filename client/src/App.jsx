@@ -52,11 +52,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <ToastProvider>
-        <Navigation
-          isLoggedIn={isLoggedIn}
-          setIsLoggedIn={setIsLoggedIn}
-          username={username}
-        />
+        <Navigation isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         <ScrollToTop />
         <Routes>
           <Route

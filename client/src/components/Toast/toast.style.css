@@ -1,8 +1,15 @@
+.p-toast {
+  display: flex;
+  justify-content: end;
+}
+
 .p-toast-message {
-  background-color: transparent;
   margin: 15px 0;
-  font-size: 14px;
-  padding: 8px 10px;
+  background-color: white;
+  font-size: 10px;
+  padding: 4px 10px;
+  width: 250px;
+  color: black;
 }
 
 .p-toast-message-content {
@@ -18,27 +25,12 @@
   background-color: transparent;
 }
 
-.custom-toast.success {
-  border: 1px solid green;
-}
-
-.custom-toast.error {
-  border: 1px solid red;
-}
-
-.custom-toast.info {
-  border: 1px solid blue;
-}
-
-.custom-toast.warn {
-  border: 1px solid yellow;
-}
-
 .p-toast-icon-close:hover,
 .p-toast-icon-close {
   border: none !important;
   outline: none !important;
   box-shadow: none !important;
+  color: rgb(0, 0, 0);
 }
 
 @media screen and (max-width: 700px) {
@@ -48,7 +40,7 @@
   }
 
   .custom-toast {
-    width: 300px;
+    width: 250px;
     margin-right: 0 !important;
   }
 
@@ -81,7 +73,7 @@
   }
 
   .custom-toast {
-    width: 250px;
+    width: 200px;
     padding: 4px 10px;
   }
 }

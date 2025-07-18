@@ -5,7 +5,7 @@ import "./navigation.style.css";
 import DeleteModal from "../../components/deleteModal/deleteModal";
 import { useToast } from "../../components/Toast/Toast";
 
-const Navigation = ({ isLoggedIn, setIsLoggedIn, username }) => {
+const Navigation = ({ isLoggedIn, setIsLoggedIn }) => {
   const [showModal, setShowModal] = useState(false);
   const { show } = useToast();
 
@@ -89,7 +89,6 @@ const Navigation = ({ isLoggedIn, setIsLoggedIn, username }) => {
             isLoggedIn={isLoggedIn}
             setIsLoggedIn={setIsLoggedIn}
             setShowModal={setShowModal}
-            username={username}
           />
         </div>
       </nav>
