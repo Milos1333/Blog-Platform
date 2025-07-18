@@ -5,13 +5,16 @@ import "./navigation.style.css";
 import DeleteModal from "../../components/deleteModal/deleteModal";
 import { useToast } from "../../components/Toast/Toast";
 
-const Navigation = ({ isLoggedIn, setIsLoggedIn }) => {
+const Navigation = ({ isLoggedIn, setIsLoggedIn, setUsername }) => {
   const [showModal, setShowModal] = useState(false);
   const { show } = useToast();
 
   const handleLogOut = () => {
     localStorage.removeItem("isLoggedIn");
     setIsLoggedIn(false);
+    localStorage.removeItem("username");
+    localStorage.removeItem("user");
+    setUsername("");
     show("success", "Success", "You have successfully logged out.");
   };
 

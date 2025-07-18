@@ -13,7 +13,7 @@ export const ToastProvider = ({ children }) => {
       summary,
       detail,
       life,
-      className: `custom-toast ${severity}`,
+      className: `custom-toast`,
     });
   };
 
