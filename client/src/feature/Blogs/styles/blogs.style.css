@@ -95,18 +95,33 @@
   cursor: pointer;
 }
 
-.blog-delete-icon {
-  width: 15px;
+.delete-container {
+  position: absolute;
   display: none;
-  transition: opacity 0.3s ease;
+  align-items: center;
+  justify-content: center;
+  top: 0px;
+  right: 0px;
+  border-radius: 0 12px 0 12px;
+  position: absolute;
+  background-color: white;
+  padding: 7px;
+  border: none;
 }
 
-.blogs-list-card:hover > .blog-delete-icon {
-  display: flex;
-  position: absolute;
-  top: 10px;
-  right: 10px;
+.blog-delete-icon {
+  width: 15px;
+  cursor: pointer;
   opacity: 0.7;
+  transition: opacity 0.2s ease-in;
+}
+
+.delete-container > .blog-delete-icon:hover {
+  opacity: 1;
+}
+
+.blogs-list-card:hover > .delete-container {
+  display: flex;
 }
 
 .blog-delete-icon:hover {
