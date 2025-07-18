@@ -18,6 +18,9 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("isLoggedIn") === "true"
   );
+  const [username, setUsername] = useState(
+    localStorage.getItem("username") || ""
+  );
 
   const [blogs, setBlogs] = useState([]);
   const [loadingBlogs, setLoadingBlogs] = useState(true);
@@ -41,6 +44,10 @@ const App = () => {
   useEffect(() => {
     localStorage.setItem("isLoggedIn", isLoggedIn.toString());
   }, [isLoggedIn]);
+
+  useEffect(() => {
+    localStorage.setItem("username", username);
+  }, [username]);
 
   return (
     <BrowserRouter>
@@ -67,12 +74,15 @@ const App = () => {
                 blogs={blogs}
                 loading={loadingBlogs}
                 setBlogs={setBlogs}
+                username={username}
               />
             }
           />
           <Route
             path="login"
-            element={<Login setIsLoggedIn={setIsLoggedIn} />}
+            element={
+              <Login setIsLoggedIn={setIsLoggedIn} setUsername={setUsername} />
+            }
           />
           <Route path="register" element={<Register />} />
         </Routes>

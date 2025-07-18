@@ -9,6 +9,7 @@
 
 .delete-modal-component .p-dialog-content {
   font-size: 12px;
+  padding-bottom: 10px;
 }
 
 .delete-modal-component .p-dialog-header-icon {
@@ -56,6 +57,7 @@
 
   .delete-modal-component .p-dialog-content {
     font-size: 10px;
+    padding-bottom: 0px;
   }
 
   .delete-modal-component .p-button {

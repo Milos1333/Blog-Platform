@@ -4,7 +4,7 @@ import axios from "axios";
 import "./login.style.css";
 import { useToast } from "../../../components/Toast/Toast";
 
-const Login = ({ setIsLoggedIn }) => {
+const Login = ({ setIsLoggedIn, setUsername }) => {
   const navigate = useNavigate();
   const { show } = useToast();
 
@@ -60,6 +60,8 @@ const Login = ({ setIsLoggedIn }) => {
       setIsLoggedIn("true");
 
       localStorage.setItem("user", JSON.stringify(response.data.user));
+      localStorage.setItem("username", response.data.user.username);
+      setUsername(response.data.user.username);
 
       show("success", "Success", response.data.message);
 

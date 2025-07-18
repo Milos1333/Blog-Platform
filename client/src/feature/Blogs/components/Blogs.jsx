@@ -9,26 +9,28 @@ import "primeicons/primeicons.css";
 import { InputSwitch } from "primereact/inputswitch";
 import BlogImageDelete from "../../../assets/BlogPageImages/recycle-bin.png";
 import ApiService from "../../../core/ApiService";
+import DeleteModal from "../../../components/deleteModal/deleteModal";
 
-const Blogs = ({ blogs, setBlogs }) => {
+const Blogs = ({ blogs, setBlogs, username }) => {
   const { category } = useParams();
   const navigate = useNavigate();
   const [checked, setChecked] = useState(false);
-
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
   const [activeCategoryId, setActiveCategoryId] = useState(1);
   const [first, setFirst] = useState(0);
   const rows = 8;
 
-  const handleDelete = async (id) => {
-    const confirmed = window.confirm(
-      "Are you sure you want to delete this blog?"
-    );
-    if (!confirmed) return;
+  const openDeleteModal = (id) => {
+    setDeleteId(id);
+    setDeleteModalVisible(true);
+  };
 
+  const handleDelete = async () => {
     try {
-      await ApiService.deletePost(id);
-      setBlogs((prev) => prev.filter((blog) => blog.id !== id));
-      console.log("Blog deleted:", id);
+      await ApiService.deletePost(deleteId);
+      setBlogs((prev) => prev.filter((blog) => blog.id !== deleteId));
+      console.log("Blog deleted:", deleteId);
     } catch (error) {
       console.error("Error deleting blog:", error);
       alert("Failed to delete blog.");
@@ -69,7 +71,7 @@ const Blogs = ({ blogs, setBlogs }) => {
     }
   };
 
-  const filteredBlogs =
+  const filteredByCategory =
     activeCategoryId === 1
       ? blogs
       : blogs.filter(
@@ -78,7 +80,11 @@ const Blogs = ({ blogs, setBlogs }) => {
             categories.find((c) => c.id === activeCategoryId)?.name
         );
 
-  const sortedBlogs = [...filteredBlogs].sort((a, b) => b.id - a.id);
+  const filteredBlogsMyOrAll = checked
+    ? filteredByCategory.filter((blog) => blog.username === username)
+    : filteredByCategory;
+
+  const sortedBlogs = [...filteredBlogsMyOrAll].sort((a, b) => b.id - a.id);
 
   const currentBlogs = sortedBlogs.slice(first, first + rows);
 
@@ -144,12 +150,16 @@ const Blogs = ({ blogs, setBlogs }) => {
                       {blog.created_at ? blog.created_at.split("T")[0] : ""}
                     </span>
                   </div>
-                  <img
-                    src={BlogImageDelete}
-                    alt="Icon-Delete"
-                    className="blog-delete-icon"
-                    onClick={() => handleDelete(blog.id)}
-                  />
+                  {blog.username === username && (
+                    <div className="delete-container">
+                      <img
+                        src={BlogImageDelete}
+                        alt="Icon-Delete"
+                        className="blog-delete-icon"
+                        onClick={() => openDeleteModal(blog.id)}
+                      />
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -160,6 +170,16 @@ const Blogs = ({ blogs, setBlogs }) => {
               totalRecords={sortedBlogs.length}
               onPageChange={(e) => setFirst(e.first)}
               className="custom-paginator"
+            />
+            <DeleteModal
+              visible={deleteModalVisible}
+              setVisible={setDeleteModalVisible}
+              onConfirm={() => {
+                handleDelete();
+                setDeleteModalVisible(false);
+              }}
+              title="Confirm Delete"
+              message="Are you sure you want to delete this blog?"
             />
           </>
         )}
