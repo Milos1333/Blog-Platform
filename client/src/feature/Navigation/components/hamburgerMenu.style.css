@@ -76,8 +76,19 @@
   justify-content: space-around;
 }
 
+.username-nav {
+  font-size: 13px !important;
+  font-weight: bold !important;
+}
+
 .nav-menu-link a {
   font-size: 11px !important;
+}
+
+.nav-menu-links .image-username a {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 @media screen and (max-width: 600px) {

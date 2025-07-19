@@ -143,14 +143,14 @@
   width: 100%;
 }
 
-.p-inputtext {
+.create-post-form .p-inputtext {
   font-size: 10px !important;
   color: black !important;
   padding-top: 5px !important;
   padding-bottom: 5px !important;
 }
 
-.p-placeholder {
+.create-post-form .p-placeholder {
   color: rgba(55, 55, 55, 0.71) !important;
 }
 
@@ -214,21 +214,21 @@
   font-size: 13px;
 }
 
-.form-group-image {
+.create-post-container .form-group-image {
   display: flex;
   justify-content: start;
   align-items: start;
   width: 100%;
 }
 
-.image-preview {
+.create-post-form .image-preview {
   width: auto;
   height: 40px;
   border: 1px solid blue;
   margin-left: 10px;
 }
 
-.input-image {
+.create-post-form .input-image {
   padding: 4px 10px !important;
   width: 100%;
   cursor: pointer;

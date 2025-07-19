@@ -4,16 +4,16 @@
   justify-content: center;
   align-items: center;
   background: linear-gradient(135deg, #f0f0ff, #ffffff);
-  padding: 20px;
+  padding: 15px;
 }
 
 .login-box {
   background-color: white;
-  padding: 40px 30px;
+  padding: 20px 30px;
   border-radius: 16px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
   width: 100%;
-  max-width: 400px;
+  max-width: 350px;
   animation: fadeIn 0.6s ease forwards;
   opacity: 0;
   margin-top: 20px;
@@ -31,7 +31,7 @@
 }
 
 .login-title {
-  font-size: 25px;
+  font-size: 22px;
   font-weight: bold;
   color: #1f2937;
   text-align: center;
@@ -53,16 +53,21 @@
   margin-bottom: 6px;
   color: #374151;
   font-weight: 500;
-  font-size: 13px;
+  font-size: 11px;
 }
 
 .form-group-login-register input {
-  padding: 12px;
+  padding: 8px;
   border: 1px solid #cbd5e1;
   border-radius: 8px;
-  font-size: 12px;
+  font-size: 11px;
   transition: all 0.2s ease;
   background-color: #f9fafb;
+}
+
+.form-group-login-register input[type="file"] {
+  padding: 5px;
+  font-size: 11px;
 }
 
 .form-group-login-register input:focus {
@@ -75,7 +80,7 @@
 .login-button {
   background-color: #2563eb;
   color: white;
-  padding: 12px;
+  padding: 8px;
   border: none;
   border-radius: 8px;
   font-size: 12px;
@@ -94,7 +99,7 @@
   text-align: center;
   margin-top: 20px;
   color: #6b7280;
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .register-link a {
@@ -114,7 +119,7 @@
 
 .login-box p,
 .register-box p {
-  font-size: 12px;
+  font-size: 11px;
   margin: 5px 0 10px 0;
 }
 
@@ -144,11 +149,16 @@
 
   .login-link,
   .register-link {
-    font-size: 10px !important;
+    font-size: 11px !important;
     margin-top: 15px;
   }
 
   .form-group-login-register label {
     font-size: 12px !important;
+  }
+
+  input[type="file"] {
+    padding: 7px;
+    font-size: 11px;
   }
 }
