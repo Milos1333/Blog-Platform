@@ -10,6 +10,7 @@ const Register = () => {
     email: "",
     password: "",
   });
+  const [image, setImage] = useState(null);
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
@@ -19,6 +20,12 @@ const Register = () => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     setErrors((prev) => ({ ...prev, [name]: "", general: "" }));
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
+    setErrors((prev) => ({ ...prev, image: "", general: "" }));
   };
 
   const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -34,14 +41,27 @@ const Register = () => {
     if (!password.trim()) newErrors.password = "Password is required.";
     else if (password.length < 6)
       newErrors.password = "Password must be at least 6 characters.";
+    if (!image) newErrors.image = "Profile image is required.";
 
     if (Object.keys(newErrors).length) return setErrors(newErrors);
 
     try {
+      const data = new FormData();
+      data.append("username", username);
+      data.append("email", email);
+      data.append("password", password);
+      data.append("image", image);
+
       const response = await axios.post(
         "http://localhost:5000/register",
-        formData
+        data,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
+
       show("success", "Success", response.data.message);
       navigate("/login");
     } catch (err) {
@@ -70,11 +90,19 @@ const Register = () => {
               />
             </div>
           ))}
+
+          {/* Upload image */}
+          <div className="form-group-login-register">
+            <label>Profile Image</label>
+            <input type="file" accept="image/*" onChange={handleImageChange} />
+          </div>
+
           <div className="register-error">
             {getFirstError() && (
               <p style={{ color: "red" }}>{getFirstError()}</p>
             )}
           </div>
+
           <button type="submit" className="register-button">
             Sign Up
           </button>

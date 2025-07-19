@@ -9,7 +9,7 @@ import BlogImg from "../../../assets/NavigationImages/blog.png";
 import PageImg from "../../../assets/NavigationImages/page.png";
 import ContactImg from "../../../assets/NavigationImages/contact.png";
 
-const HamburgerMenu = ({ isLoggedIn, setShowModal }) => {
+const HamburgerMenu = ({ isLoggedIn, setShowModal, username }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -80,14 +80,16 @@ const HamburgerMenu = ({ isLoggedIn, setShowModal }) => {
               </Link>
             </div>
           ) : (
-            <p className="nav-menu-link" onClick={() => setShowModal(true)}>
-              Log out
-            </p>
+            <div className="nav-menu-link">
+              <p className="username-nav">{username}</p>
+              <p onClick={() => setShowModal(true)}>Log out</p>
+            </div>
           )}
-
-          <Link to="/login" onClick={() => setMenuOpen(false)}>
-            <img src={userImage} width="50px" />
-          </Link>
+          <div className="image-username">
+            <Link to="/login" onClick={() => setMenuOpen(false)}>
+              <img src={userImage} width="50px" />
+            </Link>
+          </div>
         </div>
       </div>
     </div>

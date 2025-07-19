@@ -55,7 +55,7 @@ const App = () => {
         <Navigation
           isLoggedIn={isLoggedIn}
           setIsLoggedIn={setIsLoggedIn}
-          setUsername={setUsername}
+          username={username}
         />
         <ScrollToTop />
         <Routes>
