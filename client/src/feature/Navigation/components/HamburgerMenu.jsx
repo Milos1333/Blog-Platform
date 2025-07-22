@@ -2,14 +2,14 @@ import { useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import { NavLink, Link } from "react-router-dom";
 import "./hamburgerMenu.style.css";
-import userImage from "../../../assets/NavigationImages/user.png";
+import userImageDefault from "../../../assets/NavigationImages/user.png";
 import HomeImg from "../../../assets/NavigationImages/home.png";
 import AboutImg from "../../../assets/NavigationImages/about.png";
 import BlogImg from "../../../assets/NavigationImages/blog.png";
 import PageImg from "../../../assets/NavigationImages/page.png";
 import ContactImg from "../../../assets/NavigationImages/contact.png";
 
-const HamburgerMenu = ({ isLoggedIn, setShowModal, username }) => {
+const HamburgerMenu = ({ isLoggedIn, setShowModal, username, userImage }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -87,7 +87,11 @@ const HamburgerMenu = ({ isLoggedIn, setShowModal, username }) => {
           )}
           <div className="image-username">
             <Link to="/login" onClick={() => setMenuOpen(false)}>
-              <img src={userImage} width="50px" />
+              <img
+                src={isLoggedIn ? userImage : userImageDefault}
+                alt="User avatar"
+                className={isLoggedIn ? "" : "guest-image"}
+              />
             </Link>
           </div>
         </div>

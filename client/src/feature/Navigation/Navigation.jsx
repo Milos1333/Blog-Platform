@@ -5,15 +5,20 @@ import "./navigation.style.css";
 import DeleteModal from "../../components/deleteModal/deleteModal";
 import { useToast } from "../../components/Toast/Toast";
 
-const Navigation = ({ isLoggedIn, setIsLoggedIn, username }) => {
+const Navigation = ({ isLoggedIn, setIsLoggedIn, username, userImage }) => {
   const [showModal, setShowModal] = useState(false);
   const { show } = useToast();
 
   const handleLogOut = () => {
-    localStorage.removeItem("isLoggedIn");
+    localStorage.clear();
     setIsLoggedIn(false);
     show("success", "Success", "You have successfully logged out.");
   };
+
+  const userImageUrl =
+    userImage && !userImage.startsWith("http")
+      ? `http://localhost:5000${userImage}`
+      : userImage;
 
   return (
     <>
@@ -75,14 +80,22 @@ const Navigation = ({ isLoggedIn, setIsLoggedIn, username }) => {
               </Link>
             </div>
           ) : (
-            <div className="nav-auth-links">
-              <p
-                className="nav-register-link"
-                onClick={() => setShowModal(true)}
-              >
-                Log out
-              </p>
-            </div>
+            <>
+              <div className="nav-auth-links">
+                <p
+                  className="nav-register-link"
+                  onClick={() => setShowModal(true)}
+                >
+                  Log out
+                </p>
+              </div>
+              <img
+                src={isLoggedIn ? userImage : null}
+                width="20px"
+                height="20px"
+                className={isLoggedIn ? "image-avatar" : ""}
+              />
+            </>
           )}
 
           <HamburgerMenu
@@ -90,6 +103,7 @@ const Navigation = ({ isLoggedIn, setIsLoggedIn, username }) => {
             setIsLoggedIn={setIsLoggedIn}
             setShowModal={setShowModal}
             username={username}
+            userImage={userImageUrl}
           />
         </div>
       </nav>
