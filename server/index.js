@@ -43,35 +43,70 @@ db.connect((err) => {
 });
 
 // Registracija
-app.post("/register", (req, res) => {
-  const { username, email, password } = req.body;
-
-  const checkUserQuery = "SELECT * FROM users WHERE email = ? OR username = ?";
-  db.query(checkUserQuery, [email, username], (err, results) => {
-    if (err) {
-      console.error("Register query error:", err);
-      return res.status(500).json({ error: err });
-    }
-
-    if (results.length > 0) {
-      console.log("User already exists:", email, username);
-      return res.status(400).json({ message: "User already exists." });
-    }
-
-    const hashedPassword = bcrypt.hashSync(password, 10);
-    const insertUserQuery =
-      "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
-    db.query(insertUserQuery, [username, email, hashedPassword], (err) => {
+app.post(
+  "/register",
+  (req, res, next) => {
+    upload.single("image")(req, res, function (err) {
       if (err) {
-        console.error("Error inserting user:", err);
+        console.error("Multer error during register:", err);
+        return res
+          .status(500)
+          .json({ message: "Image upload failed", error: err });
+      }
+      next();
+    });
+  },
+  (req, res) => {
+    const { username, email, password } = req.body;
+    const imagePath = req.file ? `/uploads/${req.file.filename}` : null; // Relativni path za bazu
+
+    // Ovde možeš napraviti pun URL za sliku, ako želiš da odmah šalješ frontendu
+    const imageUrl = req.file
+      ? `http://localhost:5000/uploads/${req.file.filename}`
+      : null;
+
+    // Provera da li postoji korisnik
+    const checkUserQuery =
+      "SELECT * FROM users WHERE email = ? OR username = ?";
+    db.query(checkUserQuery, [email, username], (err, results) => {
+      if (err) {
+        console.error("Register query error:", err);
         return res.status(500).json({ error: err });
       }
 
-      console.log("User registered successfully:", username);
-      res.status(201).json({ message: "User registered successfully." });
+      if (results.length > 0) {
+        console.log("User already exists:", email, username);
+        return res.status(400).json({ message: "User already exists." });
+      }
+
+      const hashedPassword = bcrypt.hashSync(password, 10);
+      const insertUserQuery =
+        "INSERT INTO users (username, email, password, image) VALUES (?, ?, ?, ?)";
+
+      db.query(
+        insertUserQuery,
+        [username, email, hashedPassword, imagePath],
+        (err) => {
+          if (err) {
+            console.error("Error inserting user:", err);
+            return res.status(500).json({ error: err });
+          }
+
+          console.log("User registered successfully:", username);
+          // Vrati korisnika sa punim URL-om za sliku
+          res.status(201).json({
+            message: "User registered successfully.",
+            user: {
+              username,
+              email,
+              image: imageUrl,
+            },
+          });
+        }
+      );
     });
-  });
-});
+  }
+);
 
 // Login
 app.post("/login", (req, res) => {
@@ -104,6 +139,7 @@ app.post("/login", (req, res) => {
         id: user.id,
         username: user.username,
         email: user.email,
+        image: user.image,
       },
     });
   });

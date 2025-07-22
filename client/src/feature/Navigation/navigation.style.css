@@ -93,6 +93,12 @@
   color: rgb(76, 0, 255);
 }
 
+.image-avatar {
+  margin-left: 20px;
+  border-radius: 50%;
+  border: 1px solid blue;
+}
+
 @media screen and (max-width: 800px) {
   .nav-center {
     width: 50%;
@@ -114,6 +120,10 @@
 
 @media screen and (max-width: 600px) {
   .nav-center {
+    display: none;
+  }
+
+  .image-avatar {
     display: none;
   }
 

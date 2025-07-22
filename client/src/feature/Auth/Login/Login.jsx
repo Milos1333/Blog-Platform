@@ -4,7 +4,7 @@ import axios from "axios";
 import "./login.style.css";
 import { useToast } from "../../../components/Toast/Toast";
 
-const Login = ({ setIsLoggedIn, setUsername }) => {
+const Login = ({ setIsLoggedIn, setUsername, setUserImage }) => {
   const navigate = useNavigate();
   const { show } = useToast();
 
@@ -57,10 +57,18 @@ const Login = ({ setIsLoggedIn, setUsername }) => {
         formData
       );
 
-      setIsLoggedIn("true");
+      setIsLoggedIn(true);
+
+      const baseUrl = "http://localhost:5000";
+
+      const fullImageUrl = response.data.user.image
+        ? baseUrl + response.data.user.image
+        : null;
 
       localStorage.setItem("user", JSON.stringify(response.data.user));
       localStorage.setItem("username", response.data.user.username);
+      localStorage.setItem("userImage", fullImageUrl);
+      setUserImage(fullImageUrl);
       setUsername(response.data.user.username);
 
       show("success", "Success", response.data.message);

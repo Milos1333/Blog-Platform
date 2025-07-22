@@ -148,7 +148,7 @@ const CreateBlog = ({ fetchBlogs, isLoggedIn }) => {
             />
           </div>
 
-          <div className="form-group form-group-image">
+          <div className="form-group form-group-image ">
             <label htmlFor="image">Cover Image</label>
             <input
               type="file"

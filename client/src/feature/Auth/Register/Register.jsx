@@ -63,6 +63,7 @@ const Register = () => {
       );
 
       show("success", "Success", response.data.message);
+
       navigate("/login");
     } catch (err) {
       const msg = err.response?.data?.message || "Something went wrong.";
@@ -91,7 +92,6 @@ const Register = () => {
             </div>
           ))}
 
-          {/* Upload image */}
           <div className="form-group-login-register">
             <label>Profile Image</label>
             <input type="file" accept="image/*" onChange={handleImageChange} />

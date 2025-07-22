@@ -4,7 +4,7 @@ import Navigation from "./feature/Navigation/Navigation";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Footer from "./feature/Footer/Footer";
 import About from "./feature/About/About";
-import CreateBlog from "./feature/createblog/CreateBlog";
+import CreateBlog from "./feature/CreateBlog/CreateBlog";
 import ScrollToTop from "./components/ScrollToTop";
 import BlogsPage from "./feature/Blogs/BlogsPage";
 import Contact from "./feature/Contact/Contact";
@@ -23,6 +23,10 @@ const App = () => {
   );
 
   const [blogs, setBlogs] = useState([]);
+  const [userImage, setUserImage] = useState(
+    localStorage.getItem("userImage") || ""
+  );
+
   const [loadingBlogs, setLoadingBlogs] = useState(true);
 
   const fetchBlogs = async () => {
@@ -46,6 +50,10 @@ const App = () => {
   }, [isLoggedIn]);
 
   useEffect(() => {
+    localStorage.setItem("userImage", userImage);
+  }, [userImage]);
+
+  useEffect(() => {
     localStorage.setItem("username", username);
   }, [username]);
 
@@ -56,7 +64,9 @@ const App = () => {
           isLoggedIn={isLoggedIn}
           setIsLoggedIn={setIsLoggedIn}
           username={username}
+          userImage={userImage}
         />
+
         <ScrollToTop />
         <Routes>
           <Route
@@ -85,7 +95,11 @@ const App = () => {
           <Route
             path="login"
             element={
-              <Login setIsLoggedIn={setIsLoggedIn} setUsername={setUsername} />
+              <Login
+                setIsLoggedIn={setIsLoggedIn}
+                setUsername={setUsername}
+                setUserImage={setUserImage}
+              />
             }
           />
           <Route path="register" element={<Register />} />
