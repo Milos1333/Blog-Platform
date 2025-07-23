@@ -9,10 +9,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Omogući pristup slikama iz 'uploads' foldera
+// Allow access to images from the 'uploads' folder
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-// Multer podešavanje sa logovanjem
+// Multer configuration with logging
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     console.log("Setting destination for file upload");
@@ -26,7 +26,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// MySQL konekcija
+// MySQL connection
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -42,7 +42,7 @@ db.connect((err) => {
   console.log("Connected to MySQL database");
 });
 
-// Registracija
+// Registration
 app.post(
   "/register",
   (req, res, next) => {
@@ -58,14 +58,13 @@ app.post(
   },
   (req, res) => {
     const { username, email, password } = req.body;
-    const imagePath = req.file ? `/uploads/${req.file.filename}` : null; // Relativni path za bazu
+    const imagePath = req.file ? `/uploads/${req.file.filename}` : null;
 
-    // Ovde možeš napraviti pun URL za sliku, ako želiš da odmah šalješ frontendu
     const imageUrl = req.file
       ? `http://localhost:5000/uploads/${req.file.filename}`
       : null;
 
-    // Provera da li postoji korisnik
+    // Check if user already exists
     const checkUserQuery =
       "SELECT * FROM users WHERE email = ? OR username = ?";
     db.query(checkUserQuery, [email, username], (err, results) => {
@@ -93,7 +92,7 @@ app.post(
           }
 
           console.log("User registered successfully:", username);
-          // Vrati korisnika sa punim URL-om za sliku
+          // Return user with full image URL
           res.status(201).json({
             message: "User registered successfully.",
             user: {
@@ -145,7 +144,7 @@ app.post("/login", (req, res) => {
   });
 });
 
-// Upload slike sa multer error handlingom i logovanjem
+// Image upload with multer error handling and logging
 app.post(
   "/upload",
   (req, res, next) => {
@@ -172,7 +171,7 @@ app.post(
   }
 );
 
-// Kreiranje blog posta
+// Create a blog post
 app.post("/posts", (req, res) => {
   const { user_id, title, content, category, image, created_at } = req.body;
 
@@ -204,7 +203,7 @@ app.post("/posts", (req, res) => {
   );
 });
 
-// Dobavljanje svih blogova
+// Get all blog posts
 app.get("/posts", (req, res) => {
   const query = `
     SELECT posts.*, users.username
@@ -220,7 +219,8 @@ app.get("/posts", (req, res) => {
     res.json(results);
   });
 });
-// Brisanje blog posta
+
+// Delete a blog post
 app.delete("/posts/:id", (req, res) => {
   const postId = req.params.id;
 
@@ -240,7 +240,7 @@ app.delete("/posts/:id", (req, res) => {
   });
 });
 
-// Start servera
+// Start server
 const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
