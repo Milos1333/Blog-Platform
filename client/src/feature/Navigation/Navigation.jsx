@@ -4,13 +4,25 @@ import HamburgerMenu from "./components/HamburgerMenu";
 import "./navigation.style.css";
 import DeleteModal from "../../components/deleteModal/deleteModal";
 import { useToast } from "../../components/Toast/Toast";
+import { useNavigate } from "react-router-dom";
 
-const Navigation = ({ isLoggedIn, setIsLoggedIn, username, userImage }) => {
+const Navigation = ({
+  isLoggedIn,
+  setIsLoggedIn,
+  username,
+  userImage,
+  setUsername,
+}) => {
   const [showModal, setShowModal] = useState(false);
   const { show } = useToast();
+  const navigate = useNavigate();
+  const handleAvatarClick = () => {
+    navigate("/blogs?my=true");
+  };
 
   const handleLogOut = () => {
     localStorage.clear();
+    setUsername("");
     setIsLoggedIn(false);
     show("success", "Success", "You have successfully logged out.");
   };
@@ -94,6 +106,7 @@ const Navigation = ({ isLoggedIn, setIsLoggedIn, username, userImage }) => {
                 width="20px"
                 height="20px"
                 className={isLoggedIn ? "image-avatar" : ""}
+                onClick={handleAvatarClick}
               />
             </>
           )}
@@ -104,6 +117,7 @@ const Navigation = ({ isLoggedIn, setIsLoggedIn, username, userImage }) => {
             setShowModal={setShowModal}
             username={username}
             userImage={userImageUrl}
+            handleAvatarClick={handleAvatarClick}
           />
         </div>
       </nav>

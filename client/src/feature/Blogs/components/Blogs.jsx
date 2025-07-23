@@ -10,6 +10,7 @@ import { InputSwitch } from "primereact/inputswitch";
 import BlogImageDelete from "../../../assets/BlogPageImages/recycle-bin.png";
 import ApiService from "../../../core/ApiService";
 import DeleteModal from "../../../components/deleteModal/deleteModal";
+import { useLocation } from "react-router-dom";
 
 const Blogs = ({ blogs, setBlogs, username }) => {
   const { category } = useParams();
@@ -20,11 +21,18 @@ const Blogs = ({ blogs, setBlogs, username }) => {
   const [activeCategoryId, setActiveCategoryId] = useState(1);
   const [first, setFirst] = useState(0);
   const rows = 8;
+  const location = useLocation();
 
   const openDeleteModal = (id) => {
     setDeleteId(id);
     setDeleteModalVisible(true);
   };
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const isMy = params.get("my") === "true";
+    setChecked(isMy);
+  }, [location.search]);
 
   const handleDelete = async () => {
     try {

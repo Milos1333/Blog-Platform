@@ -9,7 +9,13 @@ import BlogImg from "../../../assets/NavigationImages/blog.png";
 import PageImg from "../../../assets/NavigationImages/page.png";
 import ContactImg from "../../../assets/NavigationImages/contact.png";
 
-const HamburgerMenu = ({ isLoggedIn, setShowModal, username, userImage }) => {
+const HamburgerMenu = ({
+  isLoggedIn,
+  setShowModal,
+  username,
+  userImage,
+  handleAvatarClick,
+}) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -86,13 +92,25 @@ const HamburgerMenu = ({ isLoggedIn, setShowModal, username, userImage }) => {
             </div>
           )}
           <div className="image-username">
-            <Link to="/login" onClick={() => setMenuOpen(false)}>
+            {isLoggedIn ? (
               <img
-                src={isLoggedIn ? userImage : userImageDefault}
+                src={userImage}
                 alt="User avatar"
-                className={isLoggedIn ? "" : "guest-image"}
+                className="avatar-image"
+                onClick={() => {
+                  setMenuOpen(false); // zatvori meni
+                  handleAvatarClick(); // idi na /blogs?my=true
+                }}
               />
-            </Link>
+            ) : (
+              <Link to="/login" onClick={() => setMenuOpen(false)}>
+                <img
+                  src={userImageDefault}
+                  alt="Guest avatar"
+                  className="guest-image"
+                />
+              </Link>
+            )}
           </div>
         </div>
       </div>
