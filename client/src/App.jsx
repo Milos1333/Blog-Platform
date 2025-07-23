@@ -65,6 +65,7 @@ const App = () => {
           setIsLoggedIn={setIsLoggedIn}
           username={username}
           userImage={userImage}
+          setUsername={setUsername}
         />
 
         <ScrollToTop />

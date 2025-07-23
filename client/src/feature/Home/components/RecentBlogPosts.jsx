@@ -27,7 +27,7 @@ const RecentBlogPosts = ({ blogs }) => {
             <h3 className="blog-title">{blog.title}</h3>
             <p className="blog-description">{blog.content}</p>
             <div className="blog-footer">
-              <span className="blog-creator">Author ID: {blog.user_id}</span>
+              <span className="blog-creator">{blog.username}</span>
               <span className="blog-date">
                 {blog.created_at ? blog.created_at.split("T")[0] : ""}
               </span>
