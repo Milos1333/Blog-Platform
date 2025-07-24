@@ -108,6 +108,22 @@
   height: 10px !important;
 }
 
+.delete-icon-review {
+  display: none;
+}
+
+.blog-review-card:hover .delete-icon-review {
+  display: flex !important;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  border-radius: 0 !important;
+}
+
 @media screen and (max-width: 800px) {
   .review-title h2 {
     font-size: 27px !important;

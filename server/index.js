@@ -240,6 +240,60 @@ app.delete("/posts/:id", (req, res) => {
   });
 });
 
+// Get all reviews
+app.get("/reviews", (req, res) => {
+  const getReviewsQuery = "SELECT * FROM reviews ORDER BY created_at DESC";
+
+  db.query(getReviewsQuery, (err, results) => {
+    if (err) {
+      console.error("Error fetching reviews:", err);
+      return res.status(500).json({ message: "Database error", error: err });
+    }
+    res.json(results);
+  });
+});
+
+// Create a review
+app.post("/reviews", (req, res) => {
+  const { title, username, userImage } = req.body;
+
+  if (!title) {
+    return res.status(400).json({ message: "Title is required" });
+  }
+
+  const insertReviewQuery =
+    "INSERT INTO reviews (title, username, userImage) VALUES (?, ?, ?)";
+
+  db.query(insertReviewQuery, [title, username, userImage], (err, result) => {
+    if (err) {
+      console.error("Error inserting review:", err);
+      return res.status(500).json({ message: "Database error", error: err });
+    }
+    console.log("Review created with ID:", result.insertId);
+    res.status(201).json({ message: "Review created successfully" });
+  });
+});
+
+// Delete a review
+app.delete("/reviews/:id", (req, res) => {
+  const reviewId = req.params.id;
+
+  const deleteReviewQuery = "DELETE FROM reviews WHERE id = ?";
+  db.query(deleteReviewQuery, [reviewId], (err, result) => {
+    if (err) {
+      console.error("Error deleting review:", err);
+      return res.status(500).json({ message: "Database error" });
+    }
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ message: "Review not found" });
+    }
+
+    console.log("Review deleted successfully, ID:", reviewId);
+    res.status(200).json({ message: "Review deleted successfully" });
+  });
+});
+
 // Start server
 const PORT = 5000;
 app.listen(PORT, () => {

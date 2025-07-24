@@ -87,7 +87,15 @@ const HamburgerMenu = ({
             </div>
           ) : (
             <div className="nav-menu-link">
-              <p className="username-nav">{username}</p>
+              <p
+                className="username-nav"
+                onClick={() => {
+                  setMenuOpen(false);
+                  handleAvatarClick();
+                }}
+              >
+                {username}
+              </p>
               <p onClick={() => setShowModal(true)}>Log out</p>
             </div>
           )}
@@ -98,8 +106,8 @@ const HamburgerMenu = ({
                 alt="User avatar"
                 className="avatar-image"
                 onClick={() => {
-                  setMenuOpen(false); // zatvori meni
-                  handleAvatarClick(); // idi na /blogs?my=true
+                  setMenuOpen(false);
+                  handleAvatarClick();
                 }}
               />
             ) : (

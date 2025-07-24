@@ -1,53 +1,39 @@
-import React from "react";
+import { useState } from "react";
 import { Carousel } from "primereact/carousel";
 import { Card } from "primereact/card";
-import ImageCreator from "../../../assets/AboutPageImages/creatorOfBlog.jpg";
+import DeleteModal from "../../../components/deleteModal/deleteModal";
 import "../styles/blogReview.style.css";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
+import deleteReviewIcon from "../../../assets/BlogPageImages/recycle-bin.png";
+import { useToast } from "../../../components/Toast/Toast";
 
-const reviews = [
-  {
-    name: "Amanda Blake",
-    review: `"I stumbled upon this blog while looking for design inspiration—and I’m so glad I did. Every post feels like a creative spark. Keep it up!"`,
-    image: ImageCreator,
-  },
-  {
-    name: "Thomas Reed",
-    review: `"Clean layout, engaging topics, and genuinely useful content. I’ve bookmarked the site and visit it regularly for new updates."`,
-    image: ImageCreator,
-  },
-  {
-    name: "Sophia Bennett",
-    review: `"What I love about this blog is the personality behind it. It feels authentic, not like mass-produced content. The visual design is stunning too!"`,
-    image: ImageCreator,
-  },
-  {
-    name: "Liam Carter",
-    review: `"As someone who works in digital marketing, this blog is a hidden gem. It offers fresh perspectives with just the right tone and visuals."`,
-    image: ImageCreator,
-  },
-  {
-    name: "Chloe Patterson",
-    review: `"Every time I read a new article, I end up learning something useful. The writing is clear and concise, and the design tips are spot-on."`,
-    image: ImageCreator,
-  },
-  {
-    name: "Ethan Mitchell",
-    review: `"Great balance of aesthetics and substance. I especially enjoy the posts where the author shares his personal journey and creative process."`,
-    image: ImageCreator,
-  },
-];
+const BlogReview = ({ reviews, loading, onDeleteReview, username }) => {
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
+  const [selectedReviewId, setSelectedReviewId] = useState(null);
+  const { show } = useToast();
 
-const BlogReview = () => {
+  const openDeleteModal = (id) => {
+    setSelectedReviewId(id);
+    setDeleteModalVisible(true);
+  };
+
+  const confirmDelete = () => {
+    if (selectedReviewId !== null) {
+      onDeleteReview(selectedReviewId);
+      setSelectedReviewId(null);
+      setDeleteModalVisible(false);
+      show("success", "Success", "Review deleted successfully.");
+    }
+  };
+
   const responsiveOptions = [
     {
       breakpoint: "1024px",
       numVisible: 2,
       numScroll: 1,
     },
-
     {
       breakpoint: "650px",
       numVisible: 1,
@@ -55,16 +41,18 @@ const BlogReview = () => {
     },
   ];
 
+  const sortedReviews = [...reviews].sort((a, b) => b.id - a.id);
+
   const reviewTemplate = (review) => {
     return (
-      <div className="p-2">
+      <div className="p-2" key={review.id} style={{ position: "relative" }}>
         <Card
           className="text-center blog-review-card"
-          style={{ padding: "24px" }}
+          style={{ padding: "24px", position: "relative" }}
         >
           <img
-            src={review.image}
-            alt={review.name}
+            src={review.userImage || "default-profile.png"}
+            alt={review.username || "User"}
             style={{
               width: "60px",
               height: "60px",
@@ -76,7 +64,7 @@ const BlogReview = () => {
             className="blog-review-name"
             style={{ marginBottom: "8px", fontSize: "18px" }}
           >
-            {review.name}
+            {review.username || "Anonymous"}
           </h3>
           <p
             className="blog-review-text"
@@ -88,12 +76,34 @@ const BlogReview = () => {
               textAlign: "center",
             }}
           >
-            {review.review}
+            {review.title}
           </p>
+          {review.username === username && (
+            <img
+              className="delete-icon-review"
+              src={deleteReviewIcon}
+              alt="Delete review"
+              onClick={() => openDeleteModal(review.id)}
+              style={{
+                cursor: "pointer",
+                position: "absolute",
+                top: "10px",
+                right: "10px",
+              }}
+            />
+          )}
         </Card>
       </div>
     );
   };
+
+  if (loading) {
+    return <p>Loading reviews...</p>;
+  }
+
+  if (!reviews.length) {
+    return <p>No reviews yet.</p>;
+  }
 
   return (
     <div className="blog-review-container">
@@ -104,7 +114,7 @@ const BlogReview = () => {
       </div>
 
       <Carousel
-        value={reviews}
+        value={sortedReviews.slice(0, 9)}
         itemTemplate={reviewTemplate}
         numVisible={3}
         numScroll={1}
@@ -112,6 +122,14 @@ const BlogReview = () => {
         circular
         responsiveOptions={responsiveOptions}
         showIndicators
+      />
+
+      <DeleteModal
+        visible={deleteModalVisible}
+        setVisible={setDeleteModalVisible}
+        onConfirm={confirmDelete}
+        title="Confirm Delete"
+        message="Are you sure you want to delete this review?"
       />
     </div>
   );
