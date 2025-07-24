@@ -27,11 +27,6 @@ const Navigation = ({
     show("success", "Success", "You have successfully logged out.");
   };
 
-  const userImageUrl =
-    userImage && !userImage.startsWith("http")
-      ? `http://localhost:5000${userImage}`
-      : userImage;
-
   return (
     <>
       <nav className="navigation-container">
@@ -116,7 +111,7 @@ const Navigation = ({
             setIsLoggedIn={setIsLoggedIn}
             setShowModal={setShowModal}
             username={username}
-            userImage={userImageUrl}
+            userImage={userImage}
             handleAvatarClick={handleAvatarClick}
           />
         </div>

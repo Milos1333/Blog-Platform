@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import "../styles/blogs.style.css";
 import { categories } from "../../../data/categoriesData";
 import { Paginator } from "primereact/paginator";
@@ -10,18 +10,18 @@ import { InputSwitch } from "primereact/inputswitch";
 import BlogImageDelete from "../../../assets/BlogPageImages/recycle-bin.png";
 import ApiService from "../../../core/ApiService";
 import DeleteModal from "../../../components/deleteModal/deleteModal";
-import { useLocation } from "react-router-dom";
 
 const Blogs = ({ blogs, setBlogs, username }) => {
   const { category } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+
   const [checked, setChecked] = useState(false);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
   const [activeCategoryId, setActiveCategoryId] = useState(1);
   const [first, setFirst] = useState(0);
   const rows = 8;
-  const location = useLocation();
 
   const openDeleteModal = (id) => {
     setDeleteId(id);
@@ -33,6 +33,25 @@ const Blogs = ({ blogs, setBlogs, username }) => {
     const isMy = params.get("my") === "true";
     setChecked(isMy);
   }, [location.search]);
+
+  const onToggleChange = (value) => {
+    setChecked(value);
+
+    const params = new URLSearchParams(location.search);
+    if (value) {
+      params.set("my", "true");
+    } else {
+      params.delete("my");
+    }
+
+    navigate(
+      {
+        pathname: location.pathname,
+        search: params.toString() ? `?${params.toString()}` : "",
+      },
+      { replace: true }
+    );
+  };
 
   const handleDelete = async () => {
     try {
@@ -131,7 +150,10 @@ const Blogs = ({ blogs, setBlogs, username }) => {
 
       <div className="toggle-switch-container">
         <p>All</p>
-        <InputSwitch checked={checked} onChange={(e) => setChecked(e.value)} />
+        <InputSwitch
+          checked={checked}
+          onChange={(e) => onToggleChange(e.value)}
+        />
         <p>My</p>
       </div>
 

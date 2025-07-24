@@ -74,7 +74,16 @@ const App = () => {
             path="/"
             element={<Home isLoggedIn={isLoggedIn} blogs={blogs} />}
           />
-          <Route path="about" element={<About />} />
+          <Route
+            path="about"
+            element={
+              <About
+                isLoggedIn={isLoggedIn}
+                username={username}
+                userImage={userImage}
+              />
+            }
+          />
           <Route
             path="createBlog"
             element={
