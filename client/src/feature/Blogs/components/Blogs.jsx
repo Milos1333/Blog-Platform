@@ -166,7 +166,11 @@ const Blogs = ({ blogs, setBlogs, username }) => {
           <>
             <div className="blogs-list-grid">
               {currentBlogs.map((blog) => (
-                <div key={blog.id} className="blogs-list-card">
+                <div
+                  key={blog.id}
+                  className="blogs-list-card"
+                  onClick={() => navigate(`/blog/${blog.id}`)}
+                >
                   <img
                     src={blog.image}
                     alt={blog.title}
