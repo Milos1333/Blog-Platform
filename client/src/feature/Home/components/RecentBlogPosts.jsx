@@ -1,8 +1,9 @@
 import "../styles/recentBlogPosts.style.css";
 import { ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const RecentBlogPosts = ({ blogs }) => {
+  const navigate = useNavigate();
   const sortedBlogs = [...blogs].sort((a, b) => {
     return b.id - a.id;
   });
@@ -22,7 +23,11 @@ const RecentBlogPosts = ({ blogs }) => {
 
       <div className="blog-grid">
         {recentFour.map((blog) => (
-          <div key={blog.id} className="blogs-list-card">
+          <div
+            key={blog.id}
+            className="blogs-list-card"
+            onClick={() => navigate(`/blog/${blog.id}`)}
+          >
             <img src={blog.image} alt={blog.title} className="blog-image" />
             <h3 className="blog-title">{blog.title}</h3>
             <p className="blog-description">{blog.content}</p>

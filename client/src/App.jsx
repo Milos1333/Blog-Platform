@@ -6,6 +6,7 @@ import Footer from "./feature/Footer/Footer";
 import About from "./feature/About/About";
 import CreateBlog from "./feature/CreateBlog/CreateBlog";
 import ScrollToTop from "./components/ScrollToTop";
+import BlogDetails from "./feature/Blogs/components/BlogDetails";
 import BlogsPage from "./feature/Blogs/BlogsPage";
 import Contact from "./feature/Contact/Contact";
 import Login from "./feature/Auth/Login/Login";
@@ -102,6 +103,7 @@ const App = () => {
               />
             }
           />
+          <Route path="blog/:id" element={<BlogDetails />} />
           <Route
             path="login"
             element={

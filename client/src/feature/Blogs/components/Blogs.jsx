@@ -10,6 +10,7 @@ import { InputSwitch } from "primereact/inputswitch";
 import BlogImageDelete from "../../../assets/BlogPageImages/recycle-bin.png";
 import ApiService from "../../../core/ApiService";
 import DeleteModal from "../../../components/deleteModal/deleteModal";
+import { useToast } from "../../../components/Toast/Toast";
 
 const Blogs = ({ blogs, setBlogs, username }) => {
   const { category } = useParams();
@@ -22,6 +23,7 @@ const Blogs = ({ blogs, setBlogs, username }) => {
   const [activeCategoryId, setActiveCategoryId] = useState(1);
   const [first, setFirst] = useState(0);
   const rows = 8;
+  const { show } = useToast();
 
   const openDeleteModal = (id) => {
     setDeleteId(id);
@@ -57,7 +59,7 @@ const Blogs = ({ blogs, setBlogs, username }) => {
     try {
       await ApiService.deletePost(deleteId);
       setBlogs((prev) => prev.filter((blog) => blog.id !== deleteId));
-      console.log("Blog deleted:", deleteId);
+      show("success", "Success", "Task successfully deleted.");
     } catch (error) {
       console.error("Error deleting blog:", error);
       alert("Failed to delete blog.");
@@ -190,7 +192,10 @@ const Blogs = ({ blogs, setBlogs, username }) => {
                         src={BlogImageDelete}
                         alt="Icon-Delete"
                         className="blog-delete-icon"
-                        onClick={() => openDeleteModal(blog.id)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          openDeleteModal(blog.id);
+                        }}
                       />
                     </div>
                   )}
