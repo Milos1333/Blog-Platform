@@ -1,12 +1,12 @@
 import "./App.css";
 import Home from "./feature/Home/Home";
 import Navigation from "./feature/Navigation/Navigation";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
 import Footer from "./feature/Footer/Footer";
 import About from "./feature/About/About";
 import CreateBlog from "./feature/CreateBlog/CreateBlog";
 import ScrollToTop from "./components/ScrollToTop";
-import BlogDetails from "./feature/Blogs/components/BlogDetails";
+import BlogDetails from "./feature/Blogs/components/BlogDetailsWrapper";
 import BlogsPage from "./feature/Blogs/BlogsPage";
 import Contact from "./feature/Contact/Contact";
 import Login from "./feature/Auth/Login/Login";
@@ -58,6 +58,15 @@ const App = () => {
     localStorage.setItem("username", username);
   }, [username]);
 
+  const BlogDetailsWrapper = ({ blogs }) => {
+    const { id } = useParams();
+    const blog = blogs.find((b) => b.id === Number(id));
+
+    if (!blog) return <div>Blog not found</div>;
+
+    return <BlogDetails blog={blog} />;
+  };
+
   return (
     <BrowserRouter>
       <ToastProvider>
@@ -103,7 +112,10 @@ const App = () => {
               />
             }
           />
-          <Route path="blog/:id" element={<BlogDetails />} />
+          <Route
+            path="blog/:id"
+            element={<BlogDetailsWrapper blogs={blogs} />}
+          />
           <Route
             path="login"
             element={
