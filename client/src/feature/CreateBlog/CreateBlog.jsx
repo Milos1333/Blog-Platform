@@ -35,7 +35,7 @@ const CreateBlog = ({ fetchBlogs, isLoggedIn }) => {
     e.preventDefault();
 
     if (!isLoggedIn) {
-      alert("You must be logged in to create a blog post.");
+      show("warn", "Warning", "You must be logged in to create a blog post.");
       navigate("/login");
       return;
     }
