@@ -156,6 +156,7 @@ const CreateBlog = ({ fetchBlogs, isLoggedIn }) => {
               accept="image/*"
               onChange={handleImageChange}
               className="input-image"
+              required
             />
             {imageError && (
               <small className="error-message">Cover image is required.</small>

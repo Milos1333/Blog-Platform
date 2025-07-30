@@ -16,7 +16,6 @@ const Blogs = ({ blogs, setBlogs, username }) => {
   const { category } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-
   const [checked, setChecked] = useState(false);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const [deleteId, setDeleteId] = useState(null);

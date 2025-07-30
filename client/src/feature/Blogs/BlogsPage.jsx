@@ -3,7 +3,7 @@ import "./blogsPage.style.css";
 
 const BlogsPage = ({ blogs, loading, setBlogs, username }) => {
   return (
-    <div>
+    <div className="blog-main-posts-container">
       {loading ? (
         <div className="no-content">
           <p>Loading blogs...</p>
