@@ -2,12 +2,26 @@ import "../styles/recentBlogPosts.style.css";
 import { ArrowRight } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
-const RecentBlogPosts = ({ blogs }) => {
+const RecentBlogPosts = ({ blogs, loading }) => {
   const navigate = useNavigate();
-  const sortedBlogs = [...blogs].sort((a, b) => {
-    return b.id - a.id;
-  });
 
+  if (loading) {
+    return (
+      <div className="loading-reviews-homepage">
+        <p>Loading blogs...</p>
+      </div>
+    );
+  }
+
+  if (!blogs || blogs.length === 0) {
+    return (
+      <div className="loading-reviews-homepage">
+        <p>No blogs yet.</p>
+      </div>
+    );
+  }
+
+  const sortedBlogs = [...blogs].sort((a, b) => b.id - a.id);
   const recentFour = sortedBlogs.slice(0, 4);
 
   return (

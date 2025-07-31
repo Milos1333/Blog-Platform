@@ -82,7 +82,13 @@ const App = () => {
         <Routes>
           <Route
             path="/"
-            element={<Home isLoggedIn={isLoggedIn} blogs={blogs} />}
+            element={
+              <Home
+                isLoggedIn={isLoggedIn}
+                blogs={blogs}
+                loading={loadingBlogs}
+              />
+            }
           />
           <Route
             path="about"

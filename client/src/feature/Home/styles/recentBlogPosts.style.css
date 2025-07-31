@@ -117,6 +117,10 @@
   background-color: rgba(3, 0, 31, 0.381);
 }
 
+.loading-reviews-homepage {
+  padding: 100px 0 200px 0;
+}
+
 .recent-blog-user {
   position: absolute;
   top: 0;
