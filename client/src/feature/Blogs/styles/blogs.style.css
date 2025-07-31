@@ -158,7 +158,7 @@
 
 .no-content-blogs {
   font-size: 15px;
-  height: 40.1vh;
+  min-height: 47vh;
   padding-top: 120px;
 }
 

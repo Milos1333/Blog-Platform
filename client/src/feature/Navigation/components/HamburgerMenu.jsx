@@ -103,7 +103,6 @@ const HamburgerMenu = ({
             {isLoggedIn ? (
               <img
                 src={userImage}
-                alt="User avatar"
                 className="avatar-image"
                 onClick={() => {
                   setMenuOpen(false);

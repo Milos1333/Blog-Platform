@@ -35,7 +35,11 @@ const Register = () => {
     const { username, email, password } = formData;
     const newErrors = {};
 
-    if (!username.trim()) newErrors.username = "Username is required.";
+    if (!username.trim()) {
+      newErrors.username = "Username is required.";
+    } else if (username.length > 20) {
+      newErrors.username = "Username must be 20 characters or less.";
+    }
     if (!email.trim()) newErrors.email = "Email is required.";
     else if (!isValidEmail(email)) newErrors.email = "Email format is invalid.";
     if (!password.trim()) newErrors.password = "Password is required.";

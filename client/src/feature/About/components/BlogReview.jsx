@@ -60,6 +60,7 @@ const BlogReview = ({ reviews, loading, onDeleteReview, username }) => {
               marginBottom: "16px",
             }}
           />
+
           <h3
             className="blog-review-name"
             style={{ marginBottom: "8px", fontSize: "18px" }}
@@ -98,11 +99,19 @@ const BlogReview = ({ reviews, loading, onDeleteReview, username }) => {
   };
 
   if (loading) {
-    return <p>Loading reviews...</p>;
+    return (
+      <div className="loading-reviews">
+        <p>Loading reviews...</p>
+      </div>
+    );
   }
 
   if (!reviews.length) {
-    return <p>No reviews yet.</p>;
+    return (
+      <div className="loading-reviews">
+        <p>No reviews yet.</p>
+      </div>
+    );
   }
 
   return (

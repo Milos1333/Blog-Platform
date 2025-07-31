@@ -50,7 +50,7 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  margin-bottom: 15px;
+  object-fit: cover;
 }
 
 .blog-review-card .blog-review-name {
@@ -60,10 +60,13 @@
 }
 
 .blog-review-card .blog-review-text {
-  font-size: 14px;
+  font-size: 12px !important;
   color: #555555;
   line-height: 22px;
   text-align: center;
+  height: 80px;
+  overflow-y: scroll;
+  padding-bottom: 10px;
 }
 
 .p-carousel-prev,
@@ -110,6 +113,12 @@
 
 .delete-icon-review {
   display: none;
+}
+
+.loading-reviews {
+  width: 100%;
+  text-align: center;
+  padding: 50px 0 100px 0;
 }
 
 .blog-review-card:hover .delete-icon-review {
