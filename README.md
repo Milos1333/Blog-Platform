@@ -37,29 +37,37 @@ Blog Platform is a full-stack application that allows users to view, create, and
 
 2. Install dependencies:
 
-   cd server
-   npm install
+```bash
+  cd server
+  npm install
+```
 
-   cd ../client
-   npm install
+```bash
+  cd ../client
+  npm install
+```
 
 3. Configure the .env file in the server/ directory (see next section).
 
 4. Start the backend server:
 
-   cd ../server
-   node index.js
+```bash
+cd ../server
+node index.js
+```
 
 5. Start the frontend application:
 
-   cd ../client
-   npm run dev
+```bash
+cd ../client
+npm run dev
+```
 
 6. Open your browser and go to: http://localhost:3000
 
 ## Environment Variables
 
-In the `server/` directory, create a `.env` file based on `.env.example`. Fill it with your database credentials and other sensitive data:
+In the `server/` directory, create a `.env` file based on `.env.example`. Fill it with your database credentials and other sensitive data.
 
 ## Database Setup
 
