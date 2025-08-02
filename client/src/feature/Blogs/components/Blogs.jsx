@@ -24,17 +24,39 @@ const Blogs = ({ blogs, setBlogs, username }) => {
   const rows = 8;
   const { show } = useToast();
 
+  // Open confirmation modal for deletion
   const openDeleteModal = (id) => {
     setDeleteId(id);
     setDeleteModalVisible(true);
   };
 
+  // Sync toggle state with URL query param
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const isMy = params.get("my") === "true";
     setChecked(isMy);
   }, [location.search]);
 
+  // Update active category based on URL param
+  useEffect(() => {
+    if (category) {
+      const found = categories.find(
+        (cat) =>
+          cat.name.toLowerCase().replace(/ & /g, "-").replace(/\s+/g, "-") ===
+          category
+      );
+      if (found) {
+        setActiveCategoryId(found.id);
+      } else {
+        setActiveCategoryId(1);
+      }
+    } else {
+      setActiveCategoryId(1);
+    }
+    setFirst(0);
+  }, [category]);
+
+  // Handle toggle switch change and update URL query param
   const onToggleChange = (value) => {
     setChecked(value);
 
@@ -54,6 +76,7 @@ const Blogs = ({ blogs, setBlogs, username }) => {
     );
   };
 
+  // Delete selected blog
   const handleDelete = async () => {
     try {
       await ApiService.deletePost(deleteId);
@@ -65,24 +88,7 @@ const Blogs = ({ blogs, setBlogs, username }) => {
     }
   };
 
-  useEffect(() => {
-    if (category) {
-      const found = categories.find(
-        (cat) =>
-          cat.name.toLowerCase().replace(/ & /g, "-").replace(/\s+/g, "-") ===
-          category
-      );
-      if (found) {
-        setActiveCategoryId(found.id);
-      } else {
-        setActiveCategoryId(1);
-      }
-    } else {
-      setActiveCategoryId(1);
-    }
-    setFirst(0);
-  }, [category]);
-
+  // Handle category selection and navigate
   const handleCategoryClick = (id) => {
     setActiveCategoryId(id);
     setFirst(0);
@@ -99,6 +105,7 @@ const Blogs = ({ blogs, setBlogs, username }) => {
     }
   };
 
+  // Filter blogs by active category
   const filteredByCategory =
     activeCategoryId === 1
       ? blogs
@@ -108,19 +115,22 @@ const Blogs = ({ blogs, setBlogs, username }) => {
             categories.find((c) => c.id === activeCategoryId)?.name
         );
 
+  // Filter blogs by "My" toggle
   const filteredBlogsMyOrAll = checked
     ? filteredByCategory.filter((blog) => blog.username === username)
     : filteredByCategory;
 
+  // Sort blogs by id descending
   const sortedBlogs = [...filteredBlogsMyOrAll].sort((a, b) => b.id - a.id);
 
+  // Blogs to display on current page
   const currentBlogs = sortedBlogs.slice(first, first + rows);
 
   return (
     <div className="blogs-container">
       <div className="blogs-categories-wrapper">
         <h3>Search blogs by category:</h3>
-        {/* DESKTOP LIST */}
+        {/* Desktop category list */}
         <ul className="blogs-categories-list">
           {categories.map((category) => (
             <li
@@ -135,7 +145,7 @@ const Blogs = ({ blogs, setBlogs, username }) => {
           ))}
         </ul>
 
-        {/* MOBILE DROPDOWN MENU */}
+        {/* Mobile category dropdown */}
         <select
           className="blogs-categories-dropdown"
           value={activeCategoryId}
@@ -149,6 +159,7 @@ const Blogs = ({ blogs, setBlogs, username }) => {
         </select>
       </div>
 
+      {/* Toggle between all blogs and user blogs */}
       <div className="toggle-switch-container">
         <p>All</p>
         <InputSwitch
@@ -209,6 +220,7 @@ const Blogs = ({ blogs, setBlogs, username }) => {
               onPageChange={(e) => setFirst(e.first)}
               className="custom-paginator"
             />
+
             <DeleteModal
               visible={deleteModalVisible}
               setVisible={setDeleteModalVisible}

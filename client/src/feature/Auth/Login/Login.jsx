@@ -29,6 +29,7 @@ const Login = ({ setIsLoggedIn, setUsername, setUserImage }) => {
     return emailRegex.test(email);
   };
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");

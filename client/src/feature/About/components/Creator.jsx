@@ -1,5 +1,4 @@
 import "../styles/creator.style.css";
-import ImageCreator from "../../../assets/AboutPageImages/creatorOfBlog.jpg";
 
 const Creator = () => {
   return (

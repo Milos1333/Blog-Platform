@@ -9,6 +9,7 @@ const CreateReview = ({ isLoggedIn, username, userImage, onReviewCreated }) => {
   const navigate = useNavigate();
   const { show } = useToast();
 
+  // Handles form submission: validates input, sends review to API, and triggers a success toast
   const handleSubmit = async (e) => {
     e.preventDefault();
 

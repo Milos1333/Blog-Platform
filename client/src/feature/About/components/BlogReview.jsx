@@ -43,6 +43,7 @@ const BlogReview = ({ reviews, loading, onDeleteReview, username }) => {
 
   const sortedReviews = [...reviews].sort((a, b) => b.id - a.id);
 
+  // Renders each individual review card with user image, name, title, and conditional delete icon
   const reviewTemplate = (review) => {
     return (
       <div className="p-2" key={review.id} style={{ position: "relative" }}>

@@ -31,6 +31,8 @@ const CreateBlog = ({ fetchBlogs, isLoggedIn }) => {
       setImageError(false);
     }
   };
+
+  // Submit new blog post
   const handleSubmit = async (e) => {
     e.preventDefault();
 
