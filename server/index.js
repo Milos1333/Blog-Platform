@@ -1,6 +1,6 @@
 const express = require("express");
 require("dotenv").config();
-const mysql = require("mysql");
+const mysql = require("mysql2");
 const bcrypt = require("bcryptjs");
 const cors = require("cors");
 const multer = require("multer");

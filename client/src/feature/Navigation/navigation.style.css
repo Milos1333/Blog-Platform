@@ -98,6 +98,7 @@
   border-radius: 50%;
   border: 1px solid blue;
   cursor: pointer;
+  object-fit: cover;
 }
 
 @media screen and (max-width: 800px) {

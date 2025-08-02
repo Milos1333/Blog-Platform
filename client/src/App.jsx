@@ -16,6 +16,7 @@ import { useState, useEffect } from "react";
 import ApiService from "./core/ApiService";
 
 const App = () => {
+  // Manage user login state and info from localStorage
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("isLoggedIn") === "true"
   );
@@ -23,13 +24,14 @@ const App = () => {
     localStorage.getItem("username") || ""
   );
 
+  // Store blogs and loading state
   const [blogs, setBlogs] = useState([]);
   const [userImage, setUserImage] = useState(
     localStorage.getItem("userImage") || ""
   );
-
   const [loadingBlogs, setLoadingBlogs] = useState(true);
 
+  // Fetch blogs from API on component mount
   const fetchBlogs = async () => {
     try {
       setLoadingBlogs(true);
@@ -46,6 +48,7 @@ const App = () => {
     fetchBlogs();
   }, []);
 
+  // Sync login and user info to localStorage on changes
   useEffect(() => {
     localStorage.setItem("isLoggedIn", isLoggedIn.toString());
   }, [isLoggedIn]);
@@ -58,6 +61,7 @@ const App = () => {
     localStorage.setItem("username", username);
   }, [username]);
 
+  // Wrapper to get blog details based on URL param
   const BlogDetailsWrapper = ({ blogs }) => {
     const { id } = useParams();
     const blog = blogs.find((b) => b.id === Number(id));
